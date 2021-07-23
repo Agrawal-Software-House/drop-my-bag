@@ -1,15 +1,16 @@
 <?php
 
-namespace App\DataTables;
+namespace App\DataTables\admin;
 
-use App\Models\Category;
+use App\Merchant;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use Carbon\Carbon;
 
-class CategoryDataTable extends DataTable
+class MerchantDatatable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,30 +22,21 @@ class CategoryDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action',function(Category $model){
-                return "<div class='btn-group'>
-                    <a type='button' href='/admin/category/$model->id/edit' class='btn btn-default'>Edit</a>
-                    <button type='button' class='btn btn-default dropdown-toggle dropdown-icon' data-toggle='dropdown'>
-                      <span class='sr-only'>Toggle Dropdown</span>
-                    </button>
-                    <div class='dropdown-menu' role='menu'>
-                      <a type='button' class='dropdown-item' onclick='showDeleteModal($model->id)'>Delete</a>
-                    </div>
-                  </div>";
+            ->editColumn('created_at', function(Merchant $model){
+                return Carbon::parse($model->created_at)->diffForHumans();
             })
-            ->editColumn('image',function(Category $model){
-                return "<img src='/storage/$model->image' style='height: 70px;' alt=''>";
-            })
-            ->rawColumns(['image', 'action']);
+            ->editColumn('updated_at', function(Merchant $model){
+                return Carbon::parse($model->updated_at)->diffForHumans();
+            });
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\CategoryDataTable $model
+     * @param \App\Merchant $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Category $model)
+    public function query(Merchant $model)
     {
         return $model->newQuery();
     }
@@ -57,18 +49,18 @@ class CategoryDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('category-table')
+                    ->setTableId('Merchant-table')
                     ->columns($this->getColumns())
                     ->postAjax()
                     ->parameters(['scrollX' => true])
                     ->dom('Bfrtip')
                     ->orderBy(1)
                     ->buttons(
-                        Button::make('create'),
-                        Button::make('reload')
+                        // Button::make('create'),
                         // Button::make('export'),
-                        // Button::make('print'),
+                        Button::make('print'),
                         // Button::make('reset'),
+                        Button::make('reload')
                     );
     }
 
@@ -80,14 +72,17 @@ class CategoryDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::computed('action')
-                  // ->exportable(false)
-                  // ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            'name',
-            'image',
-            'slug',
+            // Column::computed('action')
+            //       ->exportable(false)
+            //       ->printable(false)
+            //       ->addClass('text-center'),
+            Column::make('firm_name')->title('Firm Name'),
+            Column::make('name')->title('Full Name'),
+            Column::make('phone_number')->title('Phone Number'),
+            Column::make('gst')->title('GST'),
+            Column::make('address')->title('Address'),
+            Column::make('pincode')->title('Pincode'),
+            Column::make('business_type')->title('Business Type'),
             Column::make('created_at'),
             Column::make('updated_at'),
         ];
@@ -100,6 +95,6 @@ class CategoryDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Category_' . date('YmdHis');
+        return 'admin/Merchant_' . date('YmdHis');
     }
 }

@@ -68,7 +68,8 @@ class merchanDisApprovdProductDatatable extends DataTable
         return $this->builder()
                     ->setTableId('merchandisapprovdproductdatatable-table')
                     ->columns($this->getColumns())
-                    ->minifiedAjax()
+                    ->postAjax()
+                    ->parameters(['scrollX' => true])
                     ->dom('Bfrtip')
                     ->orderBy(1)
                     ->buttons(

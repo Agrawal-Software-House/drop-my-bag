@@ -67,6 +67,7 @@ class adminDisApprovedProductDatatable extends DataTable
                     ->setTableId('admindisapprovedproductdatatable-table')
                     ->columns($this->getColumns())
                     ->postAjax()
+                    ->parameters(['scrollX' => true])
                     ->dom('Bfrtip')
                     ->orderBy(1)
                     ->buttons(

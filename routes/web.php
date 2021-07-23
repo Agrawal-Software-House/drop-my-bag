@@ -22,6 +22,17 @@ Route::group(['namespace' => 'admin'], function () {
   Route::get('/admin/product/disapproved','product\disApprovedProductController@index')->name('admin.product.disapproved');
   Route::get('/admin/product/approved','product\approvedProductController@index')->name('admin.product.approved');
   Route::get('/admin/product/pending','product\pendingProductController@index')->name('admin.product.pending');
+
+
+  Route::get('/admin/merchant/approved','MerchantController@approvedList')->name('admin.merchant.approved');
+  Route::get('/admin/merchant/pending','MerchantController@pendingList')->name('admin.merchant.pending');
+  Route::resource('/admin/merchant','MerchantController',[
+    'as' => 'admin',
+  ]);
+
+  Route::resource('/admin/customer','CustomerController',[
+    'as' => 'admin',
+  ]);
   
   Route::resource('/admin/product','product\ProductController',[
     'as' => 'admin',

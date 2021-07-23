@@ -67,6 +67,7 @@ class adminPendingProductDatatable extends DataTable
                     ->setTableId('adminpendingproductdatatable-table')
                     ->columns($this->getColumns())
                     ->postAjax()
+                    ->parameters(['scrollX' => true])
                     ->dom('Bfrtip')
                     ->orderBy(1)
                     ->buttons(

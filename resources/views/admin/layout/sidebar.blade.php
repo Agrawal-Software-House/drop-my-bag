@@ -147,26 +147,28 @@
 
         <li class="nav-header">Merchants</li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="{{ route('admin.merchant.pending') }}" class="nav-link">
             <i class="fas fa-circle nav-icon"></i>
             <p>Pending</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="{{ route('admin.merchant.approved') }}" class="nav-link">
             <i class="fas fa-circle nav-icon"></i>
             <p>Approved</p>
           </a>
         </li>
 
-
+        <li class="nav-header">Customers</li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="{{ route('admin.customer.index') }}" class="nav-link">
             <i class="nav-icon far fa-circle text-warning"></i>
-            <p>Customers</p>
+            <p>Active Customers</p>
           </a>
         </li>
         
+
+        <li class="nav-header">Setting</li>
         <li class="nav-item">
           <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

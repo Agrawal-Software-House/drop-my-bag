@@ -69,6 +69,7 @@ class merchanApprovdProductDatatable extends DataTable
                     ->setTableId('merchanapprovdproductdatatable-table')
                     ->columns($this->getColumns())
                     ->postAjax()
+                    ->parameters(['scrollX' => true])
                     ->dom('Bfrtip')
                     ->orderBy(1)
                     ->buttons(

@@ -59,6 +59,7 @@ class SubCategoryDataTable extends DataTable
                     ->setTableId('subcategory-table')
                     ->columns($this->getColumns())
                     ->postAjax()
+                    ->parameters(['scrollX' => true])
                     ->dom('Bfrtip')
                     ->orderBy(1)
                     ->buttons(

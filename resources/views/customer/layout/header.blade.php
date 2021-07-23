@@ -1,10 +1,15 @@
+<section style="background-color: red; color: white; padding: 10px;">
+	<marquee width="70%" direction="left" style="font-size: 20px; font-weight: bold !important;">
+	This site is under constrution
+	</marquee>
+</section>
 <section class="header-main border-bottom" style="background-color: #F29001 !important; color: white !important;">
 	<div class="container">
 		<div class="row align-items-center">
 			<div class="col-xl-2 col-lg-3 col-md-12">
 				<a href="/" class="brand-wrap">
 					<img class="logo" src="/logo/logo.png">
-				</a> <!-- brand-wrap.// -->
+				</a> 
 			</div>
 			<div class="col-xl-6 col-lg-5 col-md-6">
 				<form action="#" class="search-header">

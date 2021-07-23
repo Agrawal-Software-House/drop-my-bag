@@ -71,6 +71,7 @@ class pendingProductDatatable extends DataTable
                     ->setTableId('pendingProductDatatable-table')
                     ->columns($this->getColumns())
                     ->postAjax()
+                    ->parameters(['scrollX' => true])
                     ->dom('Bfrtip')
                     ->orderBy(1)
                     ->buttons(
