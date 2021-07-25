@@ -3,12 +3,12 @@
 	This site is under constrution
 	</marquee>
 </section>
-<section class="header-main border-bottom" style="background-color: #F29001 !important; color: white !important;">
+<section class="header-main border-bottom" style="background-color: #F29001 !important; color: black !important;">
 	<div class="container">
 		<div class="row align-items-center">
 			<div class="col-xl-2 col-lg-3 col-md-12">
 				<a href="/" class="brand-wrap">
-					<img class="logo" src="/logo/logo.png">
+					<img class="logo" src="/logo/dmbF5.png" style="max-height: 150px; height: 70px !important;">
 				</a> 
 			</div>
 			<div class="col-xl-6 col-lg-5 col-md-6">

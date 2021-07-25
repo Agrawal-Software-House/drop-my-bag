@@ -11,7 +11,7 @@
 
 <title>DropMyBag</title>
 
-<link href="/logo/logo.png" rel="shortcut icon" type="image/x-icon">
+<link href="/logo/dmbF4.png" rel="shortcut icon" type="image/x-icon">
 
 <!-- jQuery -->
 <script src="/customer/js/jquery-2.0.0.min.js" type="text/javascript"></script>

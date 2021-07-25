@@ -41,8 +41,8 @@
 <style>
   body
   {
-    font-family: 'Poppins', sans-serif !important;
-    /*font-family: 'Roboto', sans-serif !important;*/
+    /*font-family: 'Poppins', sans-serif !important;*/
+    font-family: 'Roboto', sans-serif !important;
   }
   .nav-header
   {
@@ -90,5 +90,18 @@
     border-top: 1px solid #e9ecef !important;
     background: #fff !important;
 }
+.login-page, .register-page {
+
+  background-image: url("/admin/loginbg.jpeg"); /* The image used */
+      height: 100vh; /* You must set a specified height */
+      background-position: center; /* Center the image */
+      background-repeat: no-repeat; /* Do not repeat the image */
+      background-size: cover; /* Resize the background image to cover the entire container */
+  }
+
+  .help-block
+  {
+    color: red !important;
+  }
 </style>
 </head>

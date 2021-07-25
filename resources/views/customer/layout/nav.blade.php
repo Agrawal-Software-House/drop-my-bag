@@ -23,7 +23,7 @@
 	</ul>
 	<ul class="navbar-nav ml-md-auto">
 			<li class="nav-item">
-			<a class="nav-link" href="{{ url('/merchant') }}">Sell with us</a>
+			<a class="nav-link" href="{{ route('merchant.landing') }}">Sell with us</a>
 		</li>
 		<li class="nav-item dropdown">
 			 <select class="form-control" onchange="doGTranslate(this);">

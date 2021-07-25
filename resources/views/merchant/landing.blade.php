@@ -10,7 +10,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="/merchant/img/favicon.png" rel="icon">
+  <link href="/logo/dmbF4.png" rel="shortcut icon" type="image/x-icon">
+
   <link href="/merchant/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -47,26 +48,28 @@
       <div class="row align-items-center">
 
         <div class="col-6 col-lg-2 site-logo">
-          <a href="index.html"><img src="/merchant/img/logo.png" class="img-fluid"></a>
+          <a href="/">
+            <img src="/logo/dmbF5.png" class="img-fluid" id="mercahnt-site-logo">
+          </a>
         </div>
 
         <div class="col-12 col-md-10 d-none d-lg-block">
           <nav class="site-navigation position-relative text-right" role="navigation">
 
             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-              <li class="active"><a href="index.html" class="nav-link">Home</a></li>
-              <li><a href="" class="nav-link">How to register</a></li>
-              <li><a href="" class="nav-link">Reviews</a></li>
-              <li><a href="" class="nav-link">FAQs</a></li>
+              <li class="active"><a href="#hero" class="nav-link">Home</a></li>
+              <li><a href="#how_to_register_section" class="nav-link">How to register</a></li>
+              <li><a href="#review_section" class="nav-link">Reviews</a></li>
+              {{-- <li><a href="" class="nav-link">FAQs</a></li> --}}
 
               <li class="has-children">
-                <a href="blog.html" class="nav-link">More</a>
+                <a href="#" class="nav-link">More</a>
                 <ul class="dropdown">
-                  <li><a href="" class="nav-link">Login</a></li>
-                  <li><a href="" class="nav-link">Signup</a></li>
+                  <li><a href="/seller/login" class="nav-link">Login</a></li>
+                  <li><a href="/seller/register" class="nav-link">Signup</a></li>
                 </ul>
               </li>
-              <li><a href="contact.html" class="nav-link">Contact</a></li>
+              {{-- <li><a href="contact.html" class="nav-link">Contact</a></li> --}}
             </ul>
           </nav>
         </div>
@@ -106,7 +109,7 @@
               <h1 data-aos="fade-right">Promote Your Business with us</h1>
               <p class="mb-5" data-aos="fade-right" data-aos-delay="100">Lorem ipsum dolor sit amet, consectetur
                 adipisicing elit.</p>
-              <p data-aos="fade-right" data-aos-delay="200" data-aos-offset="-500"><a href="#" class="btn btn-outline-white">Get started</a></p>
+              <p data-aos="fade-right" data-aos-delay="200" data-aos-offset="-500"><a href="/merchant/register" class="btn btn-outline-white">Get started</a></p>
             </div>
             <div class="col-lg-5 iphone-wrap">
             </div>
@@ -213,7 +216,7 @@
 
     </section>
 
-    <section class="section">
+    <section class="section" id="how_to_register_section">
 
       <div class="container">
         <div class="row justify-content-center text-center mb-5">
@@ -283,7 +286,7 @@
     </section> -->
 
     <!-- ======= Testimonials Section ======= -->
-    <section class="section border-top border-bottom">
+    <section class="section border-top border-bottom" id="review_section">
       <div class="container">
         <div class="row justify-content-center text-center mb-5">
           <div class="col-md-4">

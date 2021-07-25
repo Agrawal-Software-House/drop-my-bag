@@ -11,8 +11,10 @@
   $(window).scroll(function() {
     if ($(this).scrollTop() > 100) {
       $('.back-to-top').fadeIn('slow');
+      $("#mercahnt-site-logo").attr('src', '/logo/dmbF4.png');
     } else {
       $('.back-to-top').fadeOut('slow');
+      $("#mercahnt-site-logo").attr('src', '/logo/dmbF5.png');
     }
   });
   $('.back-to-top').click(function() {

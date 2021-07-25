@@ -1,14 +1,6 @@
 @extends('admin.layout.auth')
 
 @section('content')
-<body class="hold-transition login-page">
-<div class="login-box">
-  <div class="login-logo">
-    <a href="/"><b>DropMyBag</a>
-  </div>
-  <!-- /.login-logo -->
-  <div class="card">
-    <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
       <form role="form" method="POST" action="{{ url('/admin/login') }}" method="post">
@@ -61,13 +53,6 @@
       </form>
      
       <p class="mb-1">
-        <a href="{{ url('/admin/password/reset') }}">I forgot my password</a>
+        <a style="color: black !important;" href="{{ url('/admin/password/reset') }}">I forgot my password</a>
       </p>
-    </div>
-    <!-- /.login-card-body -->
-  </div>
-</div>
-<!-- /.login-box -->
-
-
 @endsection
