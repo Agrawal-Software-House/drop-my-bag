@@ -43,12 +43,12 @@ class AdminUserSeeder extends Seeder
                 'password'          => bcrypt('12345678'),
                 'remember_token'    => Str::random(60),
             ],
-            // [
-            //     'name'              => 'Aashish Tiwari',
-            //     'email'             => 'rkhan@reviewthatplace.com',
-            //     'password'          => bcrypt('12345678'),
-            //     'remember_token'    => GeneralHelper::STR_RANDOM(60),
-            // ],
+            [
+                'name'              => 'Aashish Tiwari',
+                'email'             => 'Mashish063@gmail.com',
+                'password'          => bcrypt('12345678'),
+                'remember_token'    => GeneralHelper::STR_RANDOM(60),
+            ],
         ];
         return $users;
     }
