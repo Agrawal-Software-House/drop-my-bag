@@ -15,127 +15,129 @@
             <form role="form" method="POST" action="{{ url('/seller/register') }}">
                 {{ csrf_field() }}
               <div class="card2 card border-0 px-4 py-5">
-                  <div class="row p-3"> 
+                <div class="row">
+                  <div class="col-xl-6 p-3"> 
                     <label class="mb-1" for="firm_name">
                         <h6 class="mb-0 text-sm">Firm Name</h6>
                     </label> 
                     <input id="firm_name" type="text" name="firm_name" value="{{ old('firm_name') }}" autofocus placeholder="Enter your firm name"> 
                     @if ($errors->has('firm_name'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('firm_name') }}</strong>
+                            {{ $errors->first('firm_name') }}
                         </span>
                     @endif
                   </div>
 
-                  <div class="row p-3"> 
+                  <div class="col-xl-6 p-3"> 
                     <label class="mb-1">
                           <h6 class="mb-0 text-sm">Name</h6>
                       </label> 
                       <input id="name" type="text" name="name" value="{{ old('name') }}" autofocus> 
                       @if ($errors->has('name'))
                           <span class="help-block">
-                              <strong>{{ $errors->first('name') }}</strong>
+                              {{ $errors->first('name') }}
                           </span>
                       @endif
                   </div>
 
 
-                  <div class="row p-3"> 
+                  <div class="col-xl-6 p-3"> 
                     <label class="mb-1">
                           <h6 class="mb-0 text-sm">Phone Number</h6>
                       </label> 
                       <input id="phone_number" type="text" class="form-control" name="phone_number" value="{{ old('phone_number') }}" autofocus> 
                       @if ($errors->has('phone_number'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('phone_number') }}</strong>
+                                {{ $errors->first('phone_number') }}
                             </span>
                         @endif
                   </div>
 
-                  <div class="row p-3"> 
+                  <div class="col-xl-6 p-3"> 
                     <label class="mb-1">
                           <h6 class="mb-0 text-sm">GST</h6>
                       </label> 
                       <input id="gst" type="text" class="form-control" name="gst" value="{{ old('gst') }}" autofocus> 
                       @if ($errors->has('gst'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('gst') }}</strong>
+                                        {{ $errors->first('gst') }}
                                     </span>
                                 @endif
                   </div>
 
 
-                  <div class="row p-3"> 
+                  <div class="col-xl-6 p-3"> 
                     <label class="mb-1">
                           <h6 class="mb-0 text-sm">Address</h6>
                       </label> 
                       <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}" autofocus> 
                       @if ($errors->has('address'))
                           <span class="help-block">
-                              <strong>{{ $errors->first('address') }}</strong>
+                              {{ $errors->first('address') }}
                           </span>
                       @endif
                   </div>
 
-                  <div class="row p-3"> 
+                  <div class="col-xl-6 p-3"> 
                     <label class="mb-1">
                           <h6 class="mb-0 text-sm">Pincode</h6>
                       </label> 
                       <input id="pincode" type="text" class="form-control" name="pincode" value="{{ old('pincode') }}" autofocus> 
                       @if ($errors->has('pincode'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('pincode') }}</strong>
+                                {{ $errors->first('pincode') }}
                             </span>
                         @endif
                   </div>
 
-                  <div class="row p-3"> 
+                  <div class="col-xl-6 p-3"> 
                     <label class="mb-1">
                           <h6 class="mb-0 text-sm">Business Type</h6>
                       </label> 
                       <input id="business_type" type="text" class="form-control" name="business_type" value="{{ old('business_type') }}" autofocus> 
                       @if ($errors->has('business_type'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('business_type') }}</strong>
+                                {{ $errors->first('business_type') }}
                             </span>
                         @endif
                   </div>
 
-                  <div class="row p-3"> 
+                  <div class="col-xl-6 p-3"> 
                     <label class="mb-1">
                           <h6 class="mb-0 text-sm">E-Mail Address</h6>
                       </label> 
                       <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}"> 
                       @if ($errors->has('email'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('email') }}</strong>
+                            {{ $errors->first('email') }}
                         </span>
                     @endif
                   </div>
 
-                  <div class="row p-3"> 
+                  <div class="col-xl-6 p-3"> 
                     <label class="mb-1">
                           <h6 class="mb-0 text-sm">Password</h6>
                       </label> 
                       <input id="password" type="password" class="form-control" name="password"> 
                       @if ($errors->has('password'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        {{ $errors->first('password') }}
                                     </span>
                                 @endif
                   </div>
 
-                  <div class="row p-3"> 
+                  <div class="col-xl-6 p-3"> 
                     <label class="mb-1">
                           <h6 class="mb-0 text-sm">Confirm Password</h6>
                       </label> 
                       <input id="password-confirm" type="password" class="form-control" name="password_confirmation"> 
                       @if ($errors->has('password_confirmation'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                        {{ $errors->first('password_confirmation') }}
                                     </span>
                                 @endif
                   </div>
+                </div>
 
                   <div class="row mb-3 px-3"> 
                     <button type="submit" class="btn btn-blue text-center">Register</button> 

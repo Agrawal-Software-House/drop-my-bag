@@ -121,8 +121,18 @@
 						</p>
 
 						<div class="text-center text-nowrap">
-							<a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a>	
-							<a href="#" class="btn btn-outline-primary"><i class="far fa-heart"></i> Add to wishlist </a>	
+							<form method="post">
+								{{ csrf_field() }}
+								{{-- <input type="hidden" name="product_id" value="{{Crypt::encryptString($product->id)}}"> --}}
+								<a type="button" class="btn btn-outline-primary" onclick="add_to_cart({{Crypt::encryptString($product->id)}})"> 
+									<i class="fas fa-cart-plus"></i> 
+									Add to cart 
+								</a>
+								<a type="button" class="btn btn-outline-primary" onclick="add_to_wishlist({{Crypt::encryptString($product->id)}});">
+									<i class="far fa-heart"></i> 
+									Add to wishlist 
+								</a>	
+							</form>
 						</div>
 						
 				</figcaption>

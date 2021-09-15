@@ -15,6 +15,20 @@ class CreateCustomerCartsTable extends Migration
     {
         Schema::create('customer_carts', function (Blueprint $table) {
             $table->id();
+            $table->text('quantity')->default(1);
+            $table->unSignedBigInteger('customer_id');
+            $table->unSignedBigInteger('product_id');
+
+            $table->foreign('customer_id')
+                ->references('id')
+                ->on('customers')
+                ->onDelete('cascade');
+
+            $table->foreign('product_id')
+                ->references('id')
+                ->on('products')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }

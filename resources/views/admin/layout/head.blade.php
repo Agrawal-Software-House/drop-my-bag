@@ -103,5 +103,10 @@
   {
     color: red !important;
   }
+
+  table
+  {
+    width: 100% !important;
+  }
 </style>
 </head>

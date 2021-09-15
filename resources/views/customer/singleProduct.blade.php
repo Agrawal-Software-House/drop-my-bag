@@ -63,7 +63,7 @@
 
 <div class="mb-3"> 
 	<var class="price h4">Rs 465,00</var> 
-	{{-- <span class="text-muted">USD 562.65 incl. VAT</span>  --}}
+	<span class="text-muted">USD 562.65 incl. VAT</span> 
 </div> <!-- price-detail-wrap .// -->
 
 <p>Compact sport shoe for running, consectetur adipisicing elit, sed do eiusmod
@@ -94,6 +94,9 @@ consequat </p>
   </dd>
 </dl>
 
+<form method="post">
+	{{ csrf_field() }}
+	<input type="hidden" id="product_id" name="product_id" value="{{$product->id}}">
 	<div class="form-row  mt-4">
 		<div class="form-group col-md flex-grow-0">
 			<div class="input-group mb-3 input-spinner">
@@ -113,6 +116,7 @@ consequat </p>
         	<a href="#" class="btn btn-outline-primary"><i class="far fa-heart"></i> Add to wishlist </a>	
 		</div> <!-- col.// -->
 	</div> <!-- row.// -->
+</form>
 
 </article> <!-- product-info-aside .// -->
 		</main> <!-- col.// -->
