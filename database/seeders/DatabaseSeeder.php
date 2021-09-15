@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Database\Seeders\AdminUserSeeder;
 use Database\Seeders\ProductStatusSeeder;
 use Illuminate\Database\Seeder;
 
@@ -14,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-    	$this->call(ProductStatusSeeder::class);
-        // \App\Models\User::factory(10)->create();
+        $this->call(ProductStatusSeeder::class);
+    	$this->call(AdminUserSeeder::class);
     }
 }
