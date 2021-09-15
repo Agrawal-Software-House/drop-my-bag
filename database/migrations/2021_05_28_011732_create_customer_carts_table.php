@@ -15,7 +15,7 @@ class CreateCustomerCartsTable extends Migration
     {
         Schema::create('customer_carts', function (Blueprint $table) {
             $table->id();
-            $table->text('quantity')->default(1);
+            $table->text('quantity');
             $table->unSignedBigInteger('customer_id');
             $table->unSignedBigInteger('product_id');
 
