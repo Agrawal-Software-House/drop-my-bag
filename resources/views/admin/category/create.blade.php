@@ -50,7 +50,6 @@
                     <input type="checkbox" checked data-bootstrap-switch name="active" id="active" value="1">
                   </div>
 
-
                   <button type="button" class="btn btn-success" onclick="
 
                     $('#loader').show();
@@ -63,7 +62,7 @@
                       contentType: false,
                       dataType: 'json',
                       success: function(response){
-                        alert('Added Successfull!!');
+                        successToast('Category','Category Added Successfully!!');
                         window.location.replace('/admin/category');
                       },
                       complete: function(response){
@@ -91,9 +90,12 @@
 
                         if(!xhr.responseJSON.errors)
                         {
-                          alert('Can not Update Data!! Please Contact Your Developer');
+                          errorToast('Category', 'Techincal issue, contact your admin!');
                         }
-                          
+                        else
+                        {
+                          errorToast('Category','Validation Error!!');
+                        }
                         }
                       
                     });
