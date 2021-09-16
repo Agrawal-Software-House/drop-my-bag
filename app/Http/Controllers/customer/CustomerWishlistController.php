@@ -5,6 +5,8 @@ namespace App\Http\Controllers\customer;
 use App\Http\Controllers\Controller;
 use App\Models\customer_wishlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class CustomerWishlistController extends Controller
 {
@@ -15,7 +17,7 @@ class CustomerWishlistController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('customer', ['except' => 'logout']);
+        // $this->middleware('customer', ['except' => 'logout']);
     }
     
     public function index()
@@ -41,7 +43,17 @@ class CustomerWishlistController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id = Crypt::decryptString($request->id);
+        $customer = customer_wishlist::create([
+            'customer_id' => Auth::guard('customer')->user()->id,
+            'product_id' => $id,
+        ]);
+
+        $data = array(
+            'success' => 'Added to cart!!',
+        );
+        echo json_encode($data);
+
     }
 
     /**

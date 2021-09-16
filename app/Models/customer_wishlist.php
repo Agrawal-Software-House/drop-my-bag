@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class customer_wishlist extends Model
 {
+    protected $fillable = ['customer_id','product_id'];
+
     use HasFactory;
 }

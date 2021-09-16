@@ -123,15 +123,16 @@
 						<div class="text-center text-nowrap">
 							<form method="post">
 								{{ csrf_field() }}
-								{{-- <input type="hidden" name="product_id" value="{{Crypt::encryptString($product->id)}}"> --}}
-								<a type="button" class="btn btn-outline-primary" onclick="add_to_cart({{Crypt::encryptString($product->id)}})"> 
+								<input type="hidden" name="product_id" value="{{Crypt::encryptString($product->id)}}">
+								<button type="button" class="btn btn-outline-primary" onclick="add_to_cart('{{Crypt::encryptString($product->id)}}');"> 
 									<i class="fas fa-cart-plus"></i> 
 									Add to cart 
-								</a>
-								<a type="button" class="btn btn-outline-primary" onclick="add_to_wishlist({{Crypt::encryptString($product->id)}});">
+								</button>
+								
+								<button type="button" class="btn btn-outline-primary" onclick="add_to_wishlist('{{Crypt::encryptString($product->id)}}');">
 									<i class="far fa-heart"></i> 
 									Add to wishlist 
-								</a>	
+								</button>	
 							</form>
 						</div>
 						
@@ -156,5 +157,43 @@
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
 
+@push('scripts')
+<script>
+	function add_to_wishlist(id)
+	{
+		var data = new FormData(this.form);
+		data.append("_token", "{{ csrf_token() }}");
+		data.append('id',id);
+		$.ajax({
+		  type: 'POST',
+		  url: "{{ route('customer.wishlist.store') }}",
+		  data: data,
+		  processData: false,
+		  contentType: false,
+		  dataType: 'json',
+		  success: function(data){
+		  	location.reload();
+		  },
+		  complete: function(response){
+
+	      },
+		  error: function(xhr, status, data)
+		  {
+		  	
+		    // if(!xhr.responseJSON.errors)
+		    // {
+		    //   errorToast('Category', 'Techincal issue, contact your admin!');
+		    // }
+		    // else
+		    // {
+		    //   errorToast('Category','Validation Error!!');
+		    // }
+		  }
+		  
+		});
+		e.preventDefault();
+	}
+</script>
+@endpush
 
 @endsection
