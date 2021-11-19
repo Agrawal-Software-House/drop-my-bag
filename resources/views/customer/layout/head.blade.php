@@ -29,6 +29,12 @@
 
 <!-- custom javascript -->
 <script src="/customer/js/script.js" type="text/javascript"></script>
+
+<link href="/customer/css/toastr.css" rel="stylesheet">
+{{-- <script src="//code.jquery.com/jquery.min.js"></script> --}}
+<script src="/customer/js/toastr.js"></script>
+
+
 <style>
 	#google_translate_element2 {display:none!important;}
 

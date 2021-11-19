@@ -62,7 +62,7 @@
                       contentType: false,
                       dataType: 'json',
                       success: function(response){
-                        successToast('Category','Category Added Successfully!!');
+                        successToast('Category Added Successfully!!','Category');
                         window.location.replace('/admin/category');
                       },
                       complete: function(response){
@@ -94,7 +94,7 @@
                         }
                         else
                         {
-                          errorToast('Category','Validation Error!!');
+                          errorToast('Please Fill all required fields','Validation Error!!');
                         }
                         }
                       

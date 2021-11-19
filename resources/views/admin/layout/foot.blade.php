@@ -18,10 +18,12 @@
 <script src="/admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="/admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="/admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+<script src="{{ asset('admin/toast-master/js/jquery.toast.js')}}"></script>
+<script src="{{ asset('admin/toast-master/toastr.js')}}"></script>
 <!-- AdminLTE App -->
 <!-- Page specific script -->
 <script src="/admin/dist/js/adminlte.min.js"></script>
-<script src="/admin/plugins/toastr/toastr.min.js"></script>
 <script src="/admin/plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/admin/dist/js/demo.js"></script>
@@ -98,178 +100,52 @@
 </script>
 
 <script>
-  function successToast(title,body)
+
+  function warningToast(text,heading)
   {
-    $(document).Toasts('create', {
-      class: 'bg-success',
-      title: title,
-      body: body,
-      hideAfter: 3500,
-    });
-  }
+      $.toast({
+          heading: heading,
+          text: text,
+          position: 'top-right',
+          loaderBg: '#ff6849',
+          icon: 'warning',
+          hideAfter: 3500,
+          stack: 6
+      });
 
-  function errorToast(title,body)
+
+  }
+  function successToast(text,heading)
   {
-    $(document).Toasts('create', {
-      class: 'bg-danger',
-      title: title,
-      body: body,
-      hideAfter: 3500,
-    });
+      $.toast({
+          heading: heading,
+          text: text,
+          position: 'top-right',
+          loaderBg: '#ff6849',
+          icon: 'success',
+          hideAfter: 3500,
+          stack: 6
+      });
+
+
   }
-
-  $(function() {
-    var Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000
-    });
-
-    $('.swalDefaultSuccess').click(function() {
-      Toast.fire({
-        icon: 'success',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.swalDefaultInfo').click(function() {
-      Toast.fire({
-        icon: 'info',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.swalDefaultError').click(function() {
-      Toast.fire({
-        icon: 'error',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.swalDefaultWarning').click(function() {
-      Toast.fire({
-        icon: 'warning',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.swalDefaultQuestion').click(function() {
-      Toast.fire({
-        icon: 'question',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-
-    $('.toastrDefaultSuccess').click(function() {
-      toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
-    });
-    $('.toastrDefaultInfo').click(function() {
-      toastr.info('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
-    });
-    $('.toastrDefaultError').click(function() {
-      toastr.error('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
-    });
-    $('.toastrDefaultWarning').click(function() {
-      toastr.warning('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
-    });
-
-    $('.toastsDefaultDefault').click(function() {
-      $(document).Toasts('create', {
-        title: 'Toast Title',
-        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.toastsDefaultTopLeft').click(function() {
-      $(document).Toasts('create', {
-        title: 'Toast Title',
-        position: 'topLeft',
-        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.toastsDefaultBottomRight').click(function() {
-      $(document).Toasts('create', {
-        title: 'Toast Title',
-        position: 'bottomRight',
-        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.toastsDefaultBottomLeft').click(function() {
-      $(document).Toasts('create', {
-        title: 'Toast Title',
-        position: 'bottomLeft',
-        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.toastsDefaultAutohide').click(function() {
-      $(document).Toasts('create', {
-        title: 'Toast Title',
-        autohide: true,
-        delay: 750,
-        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.toastsDefaultNotFixed').click(function() {
-      $(document).Toasts('create', {
-        title: 'Toast Title',
-        fixed: false,
-        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.toastsDefaultFull').click(function() {
-      $(document).Toasts('create', {
-        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
-        title: 'Toast Title',
-        subtitle: 'Subtitle',
-        icon: 'fas fa-envelope fa-lg',
-      })
-    });
-    $('.toastsDefaultFullImage').click(function() {
-      $(document).Toasts('create', {
-        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
-        title: 'Toast Title',
-        subtitle: 'Subtitle',
-        image: '../../dist/img/user3-128x128.jpg',
-        imageAlt: 'User Picture',
-      })
-    });
-
-
-
-    $('.toastsDefaultInfo').click(function() {
-      $(document).Toasts('create', {
-        class: 'bg-info',
-        title: 'Toast Title',
-        subtitle: 'Subtitle',
-        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.toastsDefaultWarning').click(function() {
-      $(document).Toasts('create', {
-        class: 'bg-warning',
-        title: 'Toast Title',
-        subtitle: 'Subtitle',
-        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.toastsDefaultDanger').click(function() {
-      $(document).Toasts('create', {
-        class: 'bg-danger',
-        title: 'Toast Title',
-        subtitle: 'Subtitle',
-        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.toastsDefaultMaroon').click(function() {
-      $(document).Toasts('create', {
-        class: 'bg-maroon',
-        title: 'Toast Title',
-        subtitle: 'Subtitle',
-        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-  });
+  function errorToast(text,heading)
+  {
+      $.toast({
+          heading: heading,
+          text: text,
+          position: 'top-right',
+          loaderBg: '#ff6849',
+          icon: 'error',
+          hideAfter: 3500,
+          stack: 6
+      });
+  }
 </script>
 
 <script src="/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- ChartJS -->
-<script src="/admin/plugins/chart.js/Chart.min.js"></script>
+{{-- <script src="/admin/plugins/chart.js/Chart.min.js"></script> --}}
 <!-- Sparkline -->
 <script src="/admin/plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
@@ -292,6 +168,8 @@
 <script src="/admin/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/admin/dist/js/pages/dashboard.js"></script>
+
+
 
 
 @stack('custom-scripts')

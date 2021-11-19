@@ -102,7 +102,13 @@
 					<img src="/storage/{{$product->product_image}}" style="width: 100%;">
 				</div> <!-- img-wrap.// -->
 				<figcaption class="info-wrap">
-						<a href="{{ route('customer.productPage',[$category->slug,$product->slug]) }}" class="title mb-2">{{$product->product_name}}</a>
+						<a href="{{ route('customer.productPage',
+						[
+							$category->slug,
+							$product->slug,
+							Crypt::encryptString($product->id)
+						]) }}" 
+						class="title mb-2">{{$product->product_name}}</a>
 						<div class="price-wrap">
 							<span class="price">Rs 32.00</span> 
 							<small class="text-muted">/per item</small>
@@ -161,37 +167,39 @@
 <script>
 	function add_to_wishlist(id)
 	{
-		var data = new FormData(this.form);
-		data.append("_token", "{{ csrf_token() }}");
-		data.append('id',id);
-		$.ajax({
-		  type: 'POST',
-		  url: "{{ route('customer.wishlist.store') }}",
-		  data: data,
-		  processData: false,
-		  contentType: false,
-		  dataType: 'json',
-		  success: function(data){
-		  	location.reload();
-		  },
-		  complete: function(response){
+		var loggedIn = {{ Auth::guard('customer')->check() ? 'true' : 'false' }};
+		if (loggedIn)
+		{
+				var data = new FormData(this.form);
+				data.append("_token", "{{ csrf_token() }}");
+				data.append('id',id);
+				$.ajax({
+				  type: 'POST',
+				  url: "{{ route('customer.wishlist.store') }}",
+				  data: data,
+				  processData: false,
+				  contentType: false,
+				  dataType: 'json',
+				  success: function(data){
+				  	toastr.success('Added Successfully!!');
+				  	location.reload();
 
-	      },
-		  error: function(xhr, status, data)
-		  {
-		  	
-		    // if(!xhr.responseJSON.errors)
-		    // {
-		    //   errorToast('Category', 'Techincal issue, contact your admin!');
-		    // }
-		    // else
-		    // {
-		    //   errorToast('Category','Validation Error!!');
-		    // }
-		  }
-		  
-		});
-		e.preventDefault();
+				  },
+				  complete: function(response){
+
+			      },
+				  error: function(xhr, status, data)
+				  {
+				  	toastr.error('Techincal Error!');
+				  }
+				  
+				});
+				e.preventDefault();
+		}
+		else
+		{
+			toastr.error('Please login or signup to add this item to add to wishlist');
+		}
 	}
 </script>
 @endpush

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
 
 class HomeController extends Controller
@@ -31,9 +32,14 @@ class HomeController extends Controller
         abort(404);
     }
     
-    public function showProductPage($category_slug, $product_slug)
+    public function showProductPage($category_slug, $product_slug, $product_id)
     {
-        $product = product::where('slug',$product_slug)->whereHas('category',function ($query) use ($category_slug) {
+        $product = product::where(
+            [
+                'slug' => $product_slug,
+                'id' => Crypt::decryptString($product_id),
+            ]
+        )->whereHas('category',function ($query) use ($category_slug) {
                             $query->where('slug', $category_slug);
                         })->first();
         if ($product) {

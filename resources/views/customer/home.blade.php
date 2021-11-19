@@ -195,7 +195,7 @@
 					<ul class="row no-gutters bordered-cols">
 						@foreach ($category->product as $product)
 							<li class="col-6 col-lg-3 col-md-4">
-								<a href="{{ route('customer.productPage',[$category->slug,$product->slug]) }}" class="item"> 
+								<a href="{{ route('customer.productPage',[$category->slug,$product->slug,Crypt::encryptString($product->id)]) }}" class="item"> 
 									<div class="card-body">
 										<h6 class="title">{{$product->product_name}}</h6>
 										<img class="img-sm float-right" src="/storage/{{$product->product_image}}"> 
