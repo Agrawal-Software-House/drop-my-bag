@@ -28,6 +28,7 @@
                       dataType: 'json',
                       success: function(data){
                         $('#deleteSubCategoryModal').modal('hide');
+                        successToast('Deleted Successfully!', 'Sub Category');
                         $('.buttons-reload').trigger('click');
                       },
                       complete: function(data){
@@ -37,7 +38,7 @@
                       error: function(xhr, status, data){
                         if(!xhr.responseJSON.errors)
                         {
-                          alert('Can not Update Data!! Please Contact Your Developer');
+                          errorToast('Please contact your support!', 'Techincal issue!');
                         }
                         }
                       

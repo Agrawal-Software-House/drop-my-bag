@@ -1,9 +1,6 @@
 @extends('admin.app')
 
 @section('main-content')
-
-
-  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -29,9 +26,7 @@
         <form>
           {{csrf_field()}}
           <div class="row">
-            <!-- left column -->
-            <div class="col-md-12">
-              <!-- general form elements -->
+            <div class="col-md-6">
               <div class="card card-primary">
                 <div class="card-body">
                   <div class="form-group">
@@ -68,7 +63,7 @@
                       contentType: false,
                       dataType: 'json',
                       success: function(response){
-                        alert('Added Successfull!!');
+                        successToast('Added Successfull!!','Sub Category');
                         window.location.replace('/admin/sub-category');
                       },
                       complete: function(response){
@@ -96,9 +91,13 @@
 
                         if(!xhr.responseJSON.errors)
                         {
-                          alert('Can not Update Data!! Please Contact Your Developer');
+                          errorToast('Please Contact the support','Techincal issue');
                         }
-                          
+                        else
+                        {
+
+                          errorToast('Please Fill all required fields!','Validation Error');
+                        }
                         }
                       
                     });

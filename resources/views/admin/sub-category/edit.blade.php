@@ -1,9 +1,6 @@
 @extends('admin.app')
 
 @section('main-content')
-
-
-  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -33,7 +30,6 @@
           <div class="row">
             <!-- left column -->
             <div class="col-md-12">
-              <!-- general form elements -->
               <div class="card card-primary">
                 <div class="card-body">
                   <div class="form-group">
@@ -81,6 +77,7 @@
                       contentType: false,
                       dataType: 'json',
                       success: function(response){
+                        successToast('Category updated successfully!', 'Category')
                         window.location.replace('/admin/sub-category');
                       },
                       complete: function(response){
@@ -108,9 +105,13 @@
 
                         if(!xhr.responseJSON.errors)
                         {
-                          alert('Can not Update Data!! Please Contact Your Developer');
+                          errorToast('Please Contact Support!','Techincal issue!');
                         }
+                        else
+                        {
+                          errorToast('Please fill all required fields','Validation Error');
                           
+                        }
                         }
                       
                     });
