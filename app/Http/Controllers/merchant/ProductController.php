@@ -5,6 +5,7 @@ namespace App\Http\Controllers\merchant;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Category;
 use App\Models\product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +36,16 @@ class ProductController extends Controller
     public function create()
     {
         return view('merchant.product.create');
+    }
+
+    public function getSubcategory(Request $request)
+    {
+        $category = Category::find($request->category);
+
+        $data = array(
+            'subCategory' => $category->subCategory,
+        );
+        echo json_encode($data);
     }
 
     /**

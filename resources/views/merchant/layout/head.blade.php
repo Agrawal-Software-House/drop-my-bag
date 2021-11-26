@@ -37,6 +37,9 @@
 <link rel="stylesheet" href="/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet" href="/admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
+<link href="{{ asset('admin/toast-master/css/jquery.toast.css') }}" rel="stylesheet">
+
+<link href="/logo/dmbF4.png" rel="shortcut icon" type="image/x-icon">
 
 
 <style>

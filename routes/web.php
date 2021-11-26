@@ -101,6 +101,9 @@ Route::group(['namespace' => 'merchant'], function () {
   Route::get('/merchant/product/disapproved','product\disApprovedProductController@index')->name('merchant.product.disapproved');
   Route::get('/merchant/product/approved','product\approvedProductController@index')->name('merchant.product.approved');
   Route::get('/merchant/product/pending','product\pendingProductController@index')->name('merchant.product.pending');
+
+
+  Route::post('/merchant/product/get-subcategory','ProductController@getSubcategory')->name('merchant.get.subcategory');
   
   Route::resource('/merchant/product','ProductController',[
     'as' => 'merchant',

@@ -57,7 +57,7 @@
                         <label for="category">Category</label>
                         <select name="category" id="category" class="form-control form-control-border">
                           <option value="">Select Category</option>
-                          @foreach (commanHelper::GET_ALL_CATEGORY() as $category)
+                          @foreach (commanHelper::GET_CATEGORY_WITH_ACTIVE_SUBCATEGORY() as $category)
                             <option value="{{$category->id}}">{{$category->name}}</option>
                           @endforeach
                         </select>
@@ -70,9 +70,7 @@
                         <label for="sub_category">Sub Category</label>
                         <select name="sub_category" id="sub_category" class="form-control form-control-border">
                           <option value="">Select Subcategory</option>
-                          @foreach (commanHelper::GET_ALL_SUB_CATEGORY() as $subcategory)
-                            <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
-                          @endforeach
+                          
                         </select>
                         <div class="text-danger" id="error_sub_category"></div>
                       </div>
@@ -136,8 +134,6 @@
 
 
                   <button type="button" class="btn btn-success" onclick="
-
-                    $('#loader').show();
                     var data = new FormData(this.form);
                     var specification = editor.getData();
                     data.append('specification',specification);
@@ -149,30 +145,32 @@
                       processData: false,
                       contentType: false,
                       dataType: 'json',
+
                       success: function(response){
-                        alert('Added Successfull!!');
+                        successToast('Added Successfull!!','Add Product');
                         window.location.replace('/merchant/product/pending');
                       },
-                      complete: function(response){
-                          $('#loader').hide();
-                        }
-                        ,
-                      error: function(xhr, status, data){
-                          var errors = xhr.responseJSON.errors;
-                          $('.error').text('');
-                          $('.text-danger').text('');
-                          for (const [key, value] of Object.entries(errors)) {
-                            $('#error_'+key).text(value);
-                          }
 
-                            if(!xhr.responseJSON.errors)
-                            {
-                              alert('Can not Update Data!! Please Contact Your Developer');
-                            }
+                      complete: function(response){
+                      
+                      },
+
+                      error: function(xhr, status, data){
+                        var errors = xhr.responseJSON.errors;
+                        $('.error').text('');
+                        $('.text-danger').text('');
+                        for (const [key, value] of Object.entries(errors)) {
+                          $('#error_'+key).text(value);
                         }
+                        
+                        !xhr.responseJSON.errors ? errorToast('Technical issue! Please contact your support','Add Product') : errorToast('Validation Error!','Add Product');
+
+                      }
                       
                     });
-                    e.preventDefault();">Create</button>
+                    e.preventDefault();
+
+                    ">Create</button>
                 </form>
              
                
@@ -190,6 +188,45 @@
     </section>
     <!-- /.content -->
   </div>
+
   <!-- /.content-wrapper -->
+
+
+@push('custom-scripts')
+  <script>
+      $("#category").on('change', function(e) {
+        
+        var data = new FormData(this.form);
+        $.ajax({
+          type: 'POST',
+          url: '{{ route('merchant.get.subcategory') }}',
+          data: data,
+          processData: false,
+          contentType: false,
+          dataType: 'json',
+
+          success: function(data){
+            var options = '<option value="">Select Subcategory</option>';
+            for (var i = 0; i < data.subCategory.length; i++) {
+              options = options + '<option value="'+ data.subCategory[i]['id'] +'">' + data.subCategory[i]['name'] + '</option>';
+            }
+            $("#sub_category").html('');
+            $("#sub_category").append(options);
+          },
+
+          complete: function(response){
+
+          },
+
+          error: function(xhr, status, data){
+            !xhr.responseJSON.errors ?? errorToast('Technical issue! please contact support','Add Product');
+          }
+          
+        });
+        e.preventDefault();
+
+      });
+  </script>
+@endpush
 
 @endsection

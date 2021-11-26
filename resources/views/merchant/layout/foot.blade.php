@@ -18,6 +18,10 @@
 <script src="/admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="/admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="/admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+
+<script src="{{ asset('admin/toast-master/js/jquery.toast.js')}}"></script>
+<script src="{{ asset('admin/toast-master/toastr.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="/admin/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
@@ -44,6 +48,53 @@
 <script>
   $.widget.bridge('uibutton', $.ui.button)
 </script>
+
+
+<script>
+
+  function warningToast(text,heading)
+  {
+      $.toast({
+          heading: heading,
+          text: text,
+          position: 'top-right',
+          loaderBg: '#ff6849',
+          icon: 'warning',
+          hideAfter: 3500,
+          stack: 6
+      });
+
+
+  }
+  function successToast(text,heading)
+  {
+      $.toast({
+          heading: heading,
+          text: text,
+          position: 'top-right',
+          loaderBg: '#ff6849',
+          icon: 'success',
+          hideAfter: 3500,
+          stack: 6
+      });
+
+
+  }
+  function errorToast(text,heading)
+  {
+      $.toast({
+          heading: heading,
+          text: text,
+          position: 'top-right',
+          loaderBg: '#ff6849',
+          icon: 'error',
+          hideAfter: 3500,
+          stack: 6
+      });
+  }
+</script>
+
+
 <!-- Bootstrap 4 -->
 <script src="/admin/dropify/dist/js/dropify.min.js"></script>
 <script>

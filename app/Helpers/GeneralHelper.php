@@ -25,6 +25,14 @@ abstract class GeneralHelper
         return Category::where('active',1)->get();
     }
 
+    public static function GET_CATEGORY_WITH_ACTIVE_SUBCATEGORY() {
+        return Category::where('active',1)
+                ->whereHas('subCategory', function ($query) {
+                    $query->where('active', 1);
+                })
+                ->get();
+    }
+
     public static function GET_ALL_CATEGORY_WITH_ACTIVE_PRODUCT() {
         return Category::where('active',1)->whereHas('product', function ($query) {
                             $query->where('product_status_type_id', 2);
