@@ -95,7 +95,10 @@
       border-top: 1px solid #e9ecef !important;
       background: #fff !important;
   }
-  
+  table
+  {
+    width: 100% !important;
+  }
 
 
 </style>

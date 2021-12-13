@@ -165,26 +165,26 @@
                       processData: false,
                       contentType: false,
                       dataType: 'json',
+
                       success: function(response){
+                        successToast('Product Updated Successfully!','Product');
                         window.location.replace('/merchant/product/pending');
                       },
-                      complete: function(response){
-                          $('#loader').hide();
-                        }
-                        ,
-                      error: function(xhr, status, data){
-                          var errors = xhr.responseJSON.errors;
-                          $('.error').text('');
-                          $('.text-danger').text('');
-                          for (const [key, value] of Object.entries(errors)) {
-                            $('#error_'+key).text(value);
-                          }
 
-                            if(!xhr.responseJSON.errors)
-                            {
-                              alert('Can not Update Data!! Please Contact Your Developer');
-                            }
+                      complete: function(response){
+
+                      },
+
+                      error: function(xhr, status, data){
+                        var errors = xhr.responseJSON.errors;
+                        $('.error').text('');
+                        $('.text-danger').text('');
+                        for (const [key, value] of Object.entries(errors)) {
+                          $('#error_'+key).text(value);
                         }
+
+                        !xhr.responseJSON.errors ?? errorToast('Technical issue! please contact support','Add Product');
+                      }
                       
                     });
                     e.preventDefault();">Update</button>

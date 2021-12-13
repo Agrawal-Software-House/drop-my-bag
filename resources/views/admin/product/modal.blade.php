@@ -127,18 +127,15 @@
             dataType: 'json',
             success: function(data){
               $('.modal').modal('hide');
+              successToast('Product approved successfully!','Product');
               $('.buttons-reload').trigger('click');
             },
             complete: function(data){
-                $('#loader').hide();
-              }
-              ,
+
+            },
             error: function(xhr, status, data){
-              if(!xhr.responseJSON.errors)
-              {
-                alert('Can not Update Data!! Please Contact Your Developer');
-              }
-              }
+              !xhr.responseJSON.errors ?? errorToast('Technical issue! please contact support','Product');
+            }
             
           });
           e.preventDefault();
@@ -194,26 +191,28 @@
             processData: false,
             contentType: false,
             dataType: 'json',
+
             success: function(data){
               $('.modal').modal('hide');
+              successToast('Product disapproved successfully!','Product');
               $('.buttons-reload').trigger('click');
             },
+
             complete: function(data){
-                $('#loader').hide();
-              }
-              ,
-            error: function(xhr, status, data){
+
+            },
+
+            error: function(xhr, status, data)
+            {
               var errors = xhr.responseJSON.errors;
               $('.error').text('');
               $('.text-danger').text('');
               for (const [key, value] of Object.entries(errors)) {
                 $('#error_'+key).text(value);
               }
-              if(!xhr.responseJSON.errors)
-              {
-                alert('Can not Update Data!! Please Contact Your Developer');
-              }
-              }
+
+              !xhr.responseJSON.errors ?? errorToast('Technical issue! please contact support','Product');
+            }
             
           });
           e.preventDefault();

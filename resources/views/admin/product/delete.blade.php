@@ -38,18 +38,19 @@
                       dataType: 'json',
                       success: function(data){
                         $('#deleteProductModal').modal('hide');
+                        successToast('Product Deleted succesfully!','Product');
                         $('.buttons-reload').trigger('click');
                       },
                       complete: function(data){
-                          $('#loader').hide();
-                        }
-                        ,
-                      error: function(xhr, status, data){
+                        $('#loader').hide();
+                      },
+                      error: function(xhr, status, data)
+                      {
                         if(!xhr.responseJSON.errors)
                         {
-                          alert('Can not Update Data!! Please Contact Your Developer');
+                          !xhr.responseJSON.errors ?? errorToast('Technical issue! please contact support','Product');
                         }
-                        }
+                      }
                       
                     });
                     e.preventDefault();">Delete</button>
