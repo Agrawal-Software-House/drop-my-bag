@@ -67,5 +67,52 @@
 
 @stack('scripts')
 
+<script src="{{ asset('admin/toast-master/js/jquery.toast.js')}}"></script>
+<script src="{{ asset('admin/toast-master/toastr.js')}}"></script>
+
+<script>
+
+  function warningToast(text,heading)
+  {
+      $.toast({
+          heading: heading,
+          text: text,
+          position: 'top-right',
+          loaderBg: '#ff6849',
+          icon: 'warning',
+          hideAfter: 3500,
+          stack: 6
+      });
+
+
+  }
+  function successToast(text,heading)
+  {
+      $.toast({
+          heading: heading,
+          text: text,
+          position: 'top-right',
+          loaderBg: '#ff6849',
+          icon: 'success',
+          hideAfter: 3500,
+          stack: 6
+      });
+
+
+  }
+  function errorToast(text,heading)
+  {
+      $.toast({
+          heading: heading,
+          text: text,
+          position: 'top-right',
+          loaderBg: '#ff6849',
+          icon: 'error',
+          hideAfter: 3500,
+          stack: 6
+      });
+  }
+</script>
+
 </body>
 </html>

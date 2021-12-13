@@ -93,6 +93,8 @@
 		</div>
 </header><!-- sect-heading -->
 
+
+
 <div class="row">
 	@foreach ($products as $product)
 		<div class="col-md-3">
@@ -117,7 +119,7 @@
 						{{-- <p class="mb-2"> 2 Pieces  <small class="text-muted">(Min Order)</small></p> --}}
 						
 						<p class="text-muted ">{{$product->brand_name}}</p>
-					   
+
 						<hr>
 						
 						<p class="mb-3">
@@ -135,10 +137,28 @@
 									Add to cart 
 								</button>
 								
-								<button type="button" class="btn btn-outline-primary" onclick="add_to_wishlist('{{Crypt::encryptString($product->id)}}');">
-									<i class="far fa-heart"></i> 
-									Add to wishlist 
-								</button>	
+								@if (Auth::guard('customer')->check())
+									<!-- if customer already have this in add_to_wishlist -->
+									@if(commanHelper::GET_CURRENT_CUSTOMER()->wishlist()->where('product_id',$product->id)->first())
+									<a type="button" class="btn btn-primary" target="_blank" href="{{route('customer.wishlist.index')}}">
+										<i class="fas fa-heart"></i>
+										Go to wishlist
+									</a>
+									@else
+										<!-- if customer dont have this item in wishlist -->
+										<button type="button" class="btn btn-outline-primary" onclick="add_to_wishlist('{{Crypt::encryptString($product->id)}}');">
+											<i class="far fa-heart"></i> 
+											Add to wishlist
+										</button>
+									@endif
+								@else
+									<button type="button" class="btn btn-outline-primary" onclick="add_to_wishlist('{{Crypt::encryptString($product->id)}}');">
+										<i class="far fa-heart"></i> 
+										Add to wishlist
+									</button>
+								@endif
+								
+									
 							</form>
 						</div>
 						
@@ -181,7 +201,7 @@
 				  contentType: false,
 				  dataType: 'json',
 				  success: function(data){
-				  	toastr.success('Added Successfully!!');
+				  	successToast('Added Successfully!!');
 				  	location.reload();
 
 				  },
@@ -198,7 +218,7 @@
 		}
 		else
 		{
-			toastr.error('Please login or signup to add this item to add to wishlist');
+			errorToast('Please login or signup to add this item to add to wishlist');
 		}
 	}
 </script>
