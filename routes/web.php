@@ -51,7 +51,9 @@ Route::group(['namespace' => 'admin'], function () {
 Route::group(['namespace' => 'customer'], function () {
 
   Route::get('/','HomeController@index')->name('customer.home');
+
   Route::get('/product/{category_slug}/{product_slug}/{product_id}','HomeController@showProductPage')->name('customer.productPage')->where('product_slug', '.*')->where('category_slug', '.*');
+  
   Route::get('/product/{slug}','HomeController@showCategoryPage')->name('customer.category');
 
   Route::get('/customer/home','ProfileController@home');

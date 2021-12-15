@@ -96,25 +96,21 @@ consequat </p>
 
 <form method="post">
 	{{ csrf_field() }}
-	<input type="hidden" id="product_id" name="product_id" value="{{$product->id}}">
+	<input type="hidden" name="product_id" value="{{Crypt::encryptString($product->id)}}">
+
 	<div class="form-row  mt-4">
-		<div class="form-group col-md flex-grow-0">
-			<div class="input-group mb-3 input-spinner">
-			  <div class="input-group-prepend">
-			    <button class="btn btn-light" type="button" id="button-plus"> + </button>
-			  </div>
-			  <input type="text" class="form-control" value="1">
-			  <div class="input-group-append">
-			    <button class="btn btn-light" type="button" id="button-minus"> &minus; </button>
-			  </div>
-			</div>
-		</div> <!-- col.// -->
+		
+		<!-- included the button blade -->
+		@include('customer._partial.product_add_minus_button')
+
 		<div class="form-group col-md">
-			<a href="#"  class="btn  btn-primary"> 
-				<i class="fas fa-shopping-cart"></i> <span class="text">Add to cart</span> 
-			</a>
-        	<a href="#" class="btn btn-outline-primary"><i class="far fa-heart"></i> Add to wishlist </a>	
-		</div> <!-- col.// -->
+			<!-- included the button blade -->
+			@include('customer._partial.product_add_button')
+
+		</div> 
+		<!-- col.// -->
+
+
 	</div> <!-- row.// -->
 </form>
 

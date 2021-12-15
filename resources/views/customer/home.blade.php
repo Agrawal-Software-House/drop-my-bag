@@ -186,7 +186,7 @@
 						<h5 class="title">Best trending clothes only for summer</h5>
 						<p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 						<a href="#" class="btn btn-outline-primary rounded-pill">Source now</a>
-						<img src="/storage/{{$category->image}}" class="img-bg">
+						<img src="{{Storage::url($category->image)}}" class="img-bg">
 					</div>
 				</div>  --}}
 				<!-- col.// -->
@@ -198,7 +198,7 @@
 								<a href="{{ route('customer.productPage',[$category->slug,$product->slug,Crypt::encryptString($product->id)]) }}" class="item"> 
 									<div class="card-body">
 										<h6 class="title">{{$product->product_name}}</h6>
-										<img class="img-sm float-right" src="/storage/{{$product->product_image}}"> 
+										<img class="img-sm float-right" src="{{Storage::url($product->product_image)}}"> 
 										<p>
 											<strong>Rs {{$product->selling_price}}</strong> 
 											<strike class="text-muted">Rs {{$product->mrp_price}}</strike> 

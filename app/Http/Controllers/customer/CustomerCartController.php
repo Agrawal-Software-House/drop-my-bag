@@ -18,7 +18,9 @@ class CustomerCartController extends Controller
      */
     public function index()
     {
-        return view('customer.mycart');
+        $carts = Auth::guard('customer')->user()->cart;
+
+        return view('customer.account.mycart',compact('carts'));
     }
 
     /**
