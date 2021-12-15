@@ -132,11 +132,36 @@
 							<form method="post">
 								{{ csrf_field() }}
 								<input type="hidden" name="product_id" value="{{Crypt::encryptString($product->id)}}">
-								<button type="button" class="btn btn-outline-primary" onclick="add_to_cart('{{Crypt::encryptString($product->id)}}');"> 
-									<i class="fas fa-cart-plus"></i> 
-									Add to cart 
-								</button>
 								
+
+
+
+								<!-- Logic to show the customer wishlist button starts here -->
+								@if (Auth::guard('customer')->check())
+									<!-- if customer already have this in add_to_wishlist -->
+									@if(commanHelper::GET_CURRENT_CUSTOMER()->cart()->where('product_id',$product->id)->first())
+										<a type="button" class="btn btn-primary" target="_blank" href="{{route('customer.my-cart.index')}}">
+											<i class="fas fa-cart-plus"></i> 
+											Go to cart
+										</a>
+									@else
+										<!-- if customer dont have this item in wishlist -->
+										<button type="button" class="btn btn-outline-primary" onclick="add_to_cart('{{Crypt::encryptString($product->id)}}');"> 
+											<i class="fas fa-cart-plus"></i> 
+											Add to cart 
+										</button>	
+									@endif
+								@else
+									<button type="button" class="btn btn-outline-primary" onclick="add_to_cart('{{Crypt::encryptString($product->id)}}');"> 
+										<i class="fas fa-cart-plus"></i> 
+										Add to cart 
+									</button>	
+								@endif
+								<!-- Logic to show the customer wishlist button ends here -->
+
+
+
+								<!-- Logic to show the customer wishlist button starts here -->
 								@if (Auth::guard('customer')->check())
 									<!-- if customer already have this in add_to_wishlist -->
 									@if(commanHelper::GET_CURRENT_CUSTOMER()->wishlist()->where('product_id',$product->id)->first())
@@ -157,6 +182,7 @@
 										Add to wishlist
 									</button>
 								@endif
+								<!-- Logic to show the customer wishlist button ends here -->
 								
 									
 							</form>
@@ -210,7 +236,45 @@
 			      },
 				  error: function(xhr, status, data)
 				  {
-				  	toastr.error('Techincal Error!');
+				  	errorToast('Techincal Error!');
+				  }
+				  
+				});
+				e.preventDefault();
+		}
+		else
+		{
+			errorToast('Please login or signup to add this item to add to wishlist');
+		}
+	}
+
+
+	function add_to_cart(id)
+	{
+		var loggedIn = {{ Auth::guard('customer')->check() ? 'true' : 'false' }};
+		if (loggedIn)
+		{
+				var data = new FormData(this.form);
+				data.append("_token", "{{ csrf_token() }}");
+				data.append('id',id);
+				$.ajax({
+				  type: 'POST',
+				  url: "{{ route('customer.my-cart.store') }}",
+				  data: data,
+				  processData: false,
+				  contentType: false,
+				  dataType: 'json',
+				  success: function(data){
+				  	successToast('Added Successfully!!');
+				  	location.reload();
+
+				  },
+				  complete: function(response){
+
+			      },
+				  error: function(xhr, status, data)
+				  {
+				  	errorToast('Techincal Error!');
 				  }
 				  
 				});

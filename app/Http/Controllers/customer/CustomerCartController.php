@@ -1,9 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\customer;
+
+use App\Http\Controllers\Controller;
 
 use App\Models\customer_cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class CustomerCartController extends Controller
 {
@@ -14,7 +18,7 @@ class CustomerCartController extends Controller
      */
     public function index()
     {
-        //
+        return view('customer.mycart');
     }
 
     /**
@@ -35,7 +39,18 @@ class CustomerCartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //add a new item to the cart
+        $id = Crypt::decryptString($request->id);
+        $customer = customer_cart::create([
+            'customer_id' => Auth::guard('customer')->user()->id,
+            'product_id' => $id,
+            'quantity' => $request->quantity ? $request->quantity : 1,
+        ]);
+
+        $data = array(
+            'success' => 'Added to cart!!',
+        );
+        echo json_encode($data);
     }
 
     /**

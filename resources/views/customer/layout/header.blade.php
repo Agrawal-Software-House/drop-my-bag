@@ -74,7 +74,7 @@
 						</a>
 					</div>
 					<div class="widget-header">
-						<a href="{{ route('showUserCart') }}" class="widget-view">
+						<a href="{{ route('customer.my-cart.index') }}" class="widget-view">
 							<div class="icon-area">
 								<i class="fa fa-shopping-cart"></i>
 							</div>

@@ -48,9 +48,6 @@ Route::group(['namespace' => 'admin'], function () {
 
 });
 
-
-Route::view('/customer/my-cart','customer.mycart')->name('showUserCart');
-
 Route::group(['namespace' => 'customer'], function () {
 
   Route::get('/','HomeController@index')->name('customer.home');
@@ -69,6 +66,10 @@ Route::group(['namespace' => 'customer'], function () {
   ]);
 
   Route::resource('/customer/my-address','CustomerAddressController',[
+    'as' => 'customer',
+  ]);
+
+  Route::resource('/customer/my-cart','CustomerCartController',[
     'as' => 'customer',
   ]);
 });
