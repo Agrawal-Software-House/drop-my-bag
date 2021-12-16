@@ -8,6 +8,7 @@ use App\Models\customer_cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use App\DataTables\customer\customerCartDatatable;
 
 class CustomerCartController extends Controller
 {
@@ -16,11 +17,11 @@ class CustomerCartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(customerCartDatatable $dataTable)
     {
         $carts = Auth::guard('customer')->user()->cart;
 
-        return view('customer.account.mycart',compact('carts'));
+        return $dataTable->render('customer.account.mycart',compact('carts'));
     }
 
     /**
@@ -84,9 +85,19 @@ class CustomerCartController extends Controller
      * @param  \App\Models\customer_cart  $customer_cart
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, customer_cart $customer_cart)
+    public function update(Request $request, $id)
     {
-        //
+        $update = customer_cart::find($id)->update([
+            'quantity' => $request->quantity,
+        ]);
+
+        $message = $update ? 'Quantity updated successfully!' : 'Can not update quantity. Please try again later!';
+        
+        $data = array(
+            'message' => $message,
+        );
+        echo json_encode($data);
+        
     }
 
     /**

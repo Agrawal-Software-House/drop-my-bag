@@ -30,6 +30,10 @@
 <!-- custom javascript -->
 <script src="/customer/js/script.js" type="text/javascript"></script>
 <link href="{{ asset('admin/toast-master/css/jquery.toast.css') }}" rel="stylesheet">
+
+<link rel="stylesheet" href="/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="/admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 <style>
 	#google_translate_element2 {display:none!important;}
 
@@ -61,6 +65,10 @@
           color: white !important;
         }
 </style>
+
+
+@stack('styles')
+
 </head>
 <body>
 	<b class="screen-overlay"></b>

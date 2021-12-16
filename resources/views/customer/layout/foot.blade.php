@@ -65,7 +65,16 @@
 </footer>
 <!-- ========================= FOOTER END // ========================= -->
 
-@stack('scripts')
+<script src="/admin/plugins/jquery/jquery.min.js"></script>
+<script src="/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+<!-- DataTables  & Plugins -->
+<script src="/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="/admin/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
 
 <script src="{{ asset('admin/toast-master/js/jquery.toast.js')}}"></script>
 <script src="{{ asset('admin/toast-master/toastr.js')}}"></script>
@@ -113,6 +122,11 @@
       });
   }
 </script>
+
+
+
+@stack('scripts')
+
 
 </body>
 </html>

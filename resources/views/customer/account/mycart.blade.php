@@ -12,87 +12,13 @@
 
 <div class="row">
 	<main class="col-md-9">
-		<div class="card">
+		<div class="card" style="padding: 20px !important;">
 
-			<table class="table table-borderless table-shopping-cart">
-				<thead class="text-muted">
-					<tr class="small text-uppercase">
-						<th scope="col">Product</th>
-						<th scope="col" width="120">Quantity</th>
-						<th scope="col" width="120">Price</th>
-						<th scope="col" class="text-right" width="200"> </th>
-					</tr>
-				</thead>
+			{!! $dataTable->table(['class' => 'table table-borderless table-shopping-cart']) !!}
 
 
-				<tbody>
-					@if($carts->count() > 0)
-
-						<tr>
-							<td colspan="4"> Items on the cart</td>
-						</tr>
-
-						@foreach ($carts as $cart)
-						<tr>
-							<td>
-								<figure class="itemside">
-
-									<div class="aside">
-										<img 
-											src="{{Storage::url($cart->product->product_image)}}" 
-											alt="$cart->product->product_name" 
-											class="img-sm"
-										>
-									</div>
-
-									<figcaption class="info">
-
-										<a href="#" class="title text-dark">
-											{{$cart->product->product_name}}
-										</a>
-
-										<p class="text-muted small">
-											Size: XL, Color: blue, 
-											<br> 
-											Brand: {{$cart->product->brand_name}}
-										</p>
-
-									</figcaption>
-								</figure>
-							</td>
-							<td> 
-								<select class="form-control">
-									<option>1</option>
-									<option>2</option>	
-									<option>3</option>	
-									<option>4</option>	
-								</select> 
-							</td>
-							<td> 
-								<div class="price-wrap"> 
-									<var class="price">$1156.00</var> 
-									<small class="text-muted"> RS {{$cart->product->selling_price}} each </small> 
-								</div> 
-							</td>
-							<td class="text-right"> 
-								<a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
-								<a href="" class="btn btn-light"> Remove</a>
-							</td>
-						</tr>
-						@endforeach
-
-					@else
-						<tr>
-							<td colspan="4">No Items on the cart</td>
-						</tr>
-
-					@endif
-					
-				</tbody>
-			</table>
-
-			<div class="card-body border-top">
-				<a href="#" class="btn btn-primary float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
+			<div class="card-body border-top" style="margin-top: 20px;">
+				<a onclick="refreshTable();" class="btn btn-primary float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
 				<a href="{{ route('customer.home') }}" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
 			</div>	
 
@@ -125,17 +51,19 @@
 			<div class="card-body">
 					<dl class="dlist-align">
 					  <dt>Total price:</dt>
-					  <dd class="text-right">USD 568</dd>
+					  <dd class="text-right">Rs <span id="total_price">0</span></dd>
 					</dl>
 					<dl class="dlist-align">
 					  <dt>Discount:</dt>
-					  <dd class="text-right">USD 658</dd>
+					  <dd class="text-right">Rs 0</dd>
 					</dl>
 					<dl class="dlist-align">
-					  <dt>Total:</dt>
-					  <dd class="text-right  h5"><strong>$1,650</strong></dd>
+					  <dt>Grand Total:</dt>
+					  <dd class="text-right  h5"><strong>Rs <span id="grand_total">0</span></strong></dd>
 					</dl>
+
 					<hr>
+
 					<p class="text-center mb-3">
 						<img src="images/misc/payments.png" height="26">
 					</p>
@@ -149,26 +77,85 @@
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
 
-<!-- ========================= SECTION  ========================= -->
-<section class="section-name border-top padding-y">
-<div class="container">
-<h6>Payment and refund policy</h6>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+@include('customer._partial.refund_policy')
 
-</div><!-- container // -->
-</section>
-<!-- ========================= SECTION  END// ========================= -->
+@push('styles')
+	<style>
+		table
+		{
+			width: 100% !important;
+		}
+	</style>
+@endpush
+
+
+@push('scripts')
+	<script src="/vendor/datatables/buttons.server-side.js"></script>
+    {!! $dataTable->scripts() !!}
+
+
+
+	<script>
+		function refreshTable()
+		{
+			$('#customercartdatatable-table').DataTable().ajax.reload();
+
+		}
+
+		$(document).ready(function() {
+			refreshTable();
+			
+		});
+
+
+		function setTotal()
+		{
+			var total = $('#customercartdatatable-table').DataTable().ajax.json().extra.total_price;
+			console.log(total);
+			$("#total_price").html(total);
+			$("#grand_total").html(total);
+		}
+
+		function updateQuantity(cart_id, quantity)
+		{
+			var id = quantity;
+			var quantity = $("#quantity_val" + quantity).val();
+
+			var data = new FormData(this.form);
+
+			data.append("_token", "{{ csrf_token() }}");
+			data.append('_method','PUT');
+			data.append('cart_id',cart_id);
+			data.append('quantity',quantity);
+
+			$.ajax({
+				type: 'POST',
+				url: "/customer/my-cart/"+id,
+				data: data,
+				processData: false,
+				contentType: false,
+				dataType: 'json',
+				
+				success: function(data){
+					successToast(data.message);
+				},
+
+				complete: function(response){
+					refreshTable();
+				},
+
+				error: function(xhr, status, data)
+				{
+					errorToast('Techincal Error!');
+				}
+				
+			});
+			e.preventDefault();
+		}
+	</script>
+
+	
+@endpush
 
 
 @endsection
