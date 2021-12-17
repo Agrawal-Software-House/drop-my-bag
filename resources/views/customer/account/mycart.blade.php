@@ -154,8 +154,13 @@
 		}
 	</script>
 
+
+
+
 	
 @endpush
+
+@include('customer.scripts.remove_from_cart')
 
 
 @endsection

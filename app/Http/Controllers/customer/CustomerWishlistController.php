@@ -17,12 +17,13 @@ class CustomerWishlistController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('customer', ['except' => 'logout']);
+        $this->middleware('customer', ['except' => 'logout']);
     }
     
     public function index()
     {
-        return view('customer.account.wishlist');
+        $wishlists = Auth::guard('customer')->user()->wishlist;
+        return view('customer.account.wishlist',compact('wishlists'));
     }
 
     /**
@@ -96,8 +97,18 @@ class CustomerWishlistController extends Controller
      * @param  \App\Models\customer_wishlist  $customer_wishlist
      * @return \Illuminate\Http\Response
      */
-    public function destroy(customer_wishlist $customer_wishlist)
+    public function destroy($id)
     {
-        //
+        // remove from wishlist
+        $id = Crypt::decryptString($id);
+
+        $delete = customer_wishlist::find($id)->delete();
+
+        $message = $delete ? 'Removed from wishlist successfully!' : 'Can not remove from wishlist. Please try again later!';
+        
+        $data = array(
+            'message' => $message,
+        );
+        echo json_encode($data);
     }
 }

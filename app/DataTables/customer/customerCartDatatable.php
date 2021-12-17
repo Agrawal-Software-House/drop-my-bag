@@ -37,7 +37,7 @@ class customerCartDatatable extends DataTable
 
                 <figcaption class="info">
 
-                    <a href="" class="title text-dark">
+                    <a href="#" class="title text-dark">
                         '.$cart->product->product_name.'
                     </a>
 
@@ -85,8 +85,15 @@ class customerCartDatatable extends DataTable
             })
 
             ->addColumn('action', function ($cart) {
-                return '<a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
-                        <a href="" class="btn btn-light"> Remove</a>';
+                $encrypt = Crypt::encryptString($cart->id);
+
+                // $wishlist_button = '<a title="" class="btn btn-light" onclick=""> 
+                //                         <i class="fa fa-heart"></i>
+                //                     </a>';
+                
+                $remove_button = ' <a title="Remove from cart" onclick="removeFromCart('."'$encrypt'".')" class="btn btn-light">Remove</a>';
+
+                return $remove_button;
             })
 
             ->withQuery('extra', function() use ($query) {

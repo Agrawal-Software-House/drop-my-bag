@@ -2,51 +2,54 @@
 
 
 @section('profile-content')
-
-
 <article class="card">
 	<div class="card-body">
 
 <div class="row">
-		<div class="col-md-6">
-			<figure class="itemside mb-4">
-				<div class="aside"><img src="images/items/1.jpg" class="border img-md"></div>
-				<figcaption class="info">
-					<a href="#" class="title">Great product name goes here</a>
-					<p class="price mb-2">$80</p>
-					<a href="#" class="btn btn-secondary btn-sm"> Add to cart </a>
-					<a href="#" class="btn btn-danger btn-sm" data-toggle="tooltip" title="" data-original-title="Remove from wishlist"> <i class="fa fa-times"></i> </a>
-				</figcaption>
-			</figure>
-		</div> <!-- col.// -->
 
+		@foreach($wishlists as $wishlist)		
 		<div class="col-md-6">
 			<figure class="itemside mb-4">
-				<div class="aside"><img src="images/items/2.jpg" class="border img-md"></div>
+				<div class="aside"><img src="{{Storage::url($wishlist->product->product_image)}}" class="border img-md"></div>
 				<figcaption class="info">
-					<a href="#" class="title">Men's Jackeet for Winter </a>
-					<p class="price mb-2">$1280</p>
-					<a href="#" class="btn btn-secondary btn-sm"> Add to cart </a>
-					<a href="#" class="btn btn-danger btn-sm" data-toggle="tooltip" title="" data-original-title="Remove from wishlist"> <i class="fa fa-times"></i> </a>
-				</figcaption>
-			</figure>
-		</div> <!-- col.// -->
+					
+					<a href="#" class="title">{{$wishlist->product->product_name}}</a>
 
-		<div class="col-md-6">
-			<figure class="itemside mb-4">
-				<div class="aside"><img src="images/items/3.jpg" class="border img-md"></div>
-				<figcaption class="info">
-					<a href="#" class="title">Another book of item goes here </a>
-					<p class="price mb-2">$280</p>
-					<a href="#" class="btn btn-secondary btn-sm"> Add to cart </a>
-					<a href="#" class="btn btn-danger btn-sm" data-toggle="tooltip" title="" data-original-title="Remove from wishlist"> <i class="fa fa-times"></i> </a>
+					<p class="price mb-2">Rs {{$wishlist->product->selling_price}}</p>
+
+					<!-- Logic to show the customer cart button starts here -->
+					@if (Auth::guard('customer')->check() && commanHelper::GET_CURRENT_CUSTOMER()->cart()->where('product_id',$wishlist->product->id)->first())
+						<!-- if customer already have this in add_to_cart -->
+						<a target="_blank" href="{{route('customer.my-cart.index')}}" class="btn btn-secondary btn-sm text-white"> 
+							Go to cart 
+						</a>
+					@else
+						<!-- if customer dont have this item in cart -->
+						<a onclick="add_to_cart('{{Crypt::encryptString($wishlist->product->id)}}', $('#quantity').val());" class="btn btn-secondary btn-sm text-white"> 
+							Add to cart 
+						</a>
+					@endif
+					<!-- Logic to show the customer cart button ends here -->
+
+					
+
+					<a onclick="removeFromWishlist('{{Crypt::encryptString($wishlist->id)}}')" class="btn btn-danger btn-sm text-white" data-toggle="tooltip" title="" data-original-title="Remove from wishlist"> 
+						<i class="fa fa-times"></i> 
+					</a>
+
 				</figcaption>
 			</figure>
-		</div> <!-- col.// -->
+		</div> 
+		@endforeach
+		
 	</div> <!-- row .//  -->
 
 	</div> <!-- card-body.// -->
 </article>
+
+
+@include('customer.scripts.add_to_cart')
+@include('customer.scripts.remove_from_wishlist')
 
 
 @endsection

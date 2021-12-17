@@ -108,8 +108,9 @@
         </div>
 
         <button type="button" class="btn btn-success" onclick="
-                    $('#loader').show();
+
                     var data = new FormData(this.form);
+
                     $.ajax({
                       type: 'POST',
                       url: '{{ route('customer.my-address.store') }}',
@@ -118,12 +119,14 @@
                       contentType: false,
                       dataType: 'json',
                       success: function(response){
-                        alert('Added Successfull!!');
-                        window.location.replace('/customer/my-address');
+                        successToast('Added Successfull!!');
+                        window.location.replace('{{ route('customer.my-address.index') }}');
                       },
+
                       complete: function(response){
-                          $('#loader').hide();
-                        },
+                    
+                      },
+
                       error: function(xhr, status, data){
                             var errors = xhr.responseJSON.errors;
                             $('.error').text('');
@@ -131,15 +134,16 @@
                             for (const [key, value] of Object.entries(errors)) {
                               $('#error_'+key).text(value);
                             }
-                            if(!xhr.responseJSON.errors)
-                            {
-                              alert('Can not Update Data!! Please Contact Your Developer');
-                            }
+
+                            xhr.responseJSON.errors ? errorToast('Validation Error!','Address')  : errorToast('Technical Error!');
                         }
                     });
+
                     e.preventDefault();
 
         ">Add</button>
+
+
         <a href="{{ route('customer.my-address.index') }}" class="btn btn-danger">Cancel</a>
     </article>
 </form>

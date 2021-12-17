@@ -101,7 +101,7 @@
 			<figure class="card card-product-grid">
 				<div class="img-wrap"> 
 					<span class="badge badge-danger"> NEW </span>
-					<img src="/storage/{{$product->product_image}}" style="width: 100%;">
+					<img src="{{Storage::url($product->product_image)}}" style="width: 100%;">
 				</div> <!-- img-wrap.// -->
 				<figcaption class="info-wrap">
 						<a href="{{ route('customer.productPage',
@@ -161,5 +161,7 @@
 <!-- ========================= SECTION CONTENT END// ========================= -->
 
 
+@include('customer.scripts.add_to_cart')
+@include('customer.scripts.add_to_wishlist')
 
 @endsection

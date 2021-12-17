@@ -19,9 +19,7 @@ class CustomerCartController extends Controller
      */
     public function index(customerCartDatatable $dataTable)
     {
-        $carts = Auth::guard('customer')->user()->cart;
-
-        return $dataTable->render('customer.account.mycart',compact('carts'));
+        return $dataTable->render('customer.account.mycart');
     }
 
     /**
@@ -106,8 +104,17 @@ class CustomerCartController extends Controller
      * @param  \App\Models\customer_cart  $customer_cart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(customer_cart $customer_cart)
+    public function destroy($id)
     {
-        //
+        $id = Crypt::decryptString($id);
+        $delete = customer_cart::find($id)->delete();
+
+
+        $message = $delete ? 'Removed from cart successfully!' : 'Can not remove from cart. Please try again later!';
+        
+        $data = array(
+            'message' => $message,
+        );
+        echo json_encode($data);
     }
 }

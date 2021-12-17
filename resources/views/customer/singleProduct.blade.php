@@ -186,6 +186,7 @@ consequat </p>
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
 
-
+@include('customer.scripts.add_to_cart')
+@include('customer.scripts.add_to_wishlist')
 
 @endsection
