@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\customer;
 
 use App\Http\Controllers\Controller;
+use App\Models\state;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -19,6 +21,8 @@ class ProfileController extends Controller
 
     public function showSetting()
     {
-        return view('customer.account.setting');
+        $user = Auth::guard('customer')->user();
+        $states = state::all();
+        return view('customer.account.setting',compact('user','states'));
     }
 }

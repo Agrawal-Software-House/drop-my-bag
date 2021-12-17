@@ -7,44 +7,58 @@
  <form class="row">
  	<div class="col-md-9">
  		<div class="form-row">
-			<div class="col form-group">
-				<label>Name</label>
-			  	<input type="text" class="form-control" value="Vosidiy">
+
+			<div class="col-md-6 form-group">
+				<label>First Name</label>
+			  	<input type="text" class="form-control" value="{{$user->first_name}}">
 			</div> <!-- form-group end.// -->
-			<div class="col form-group">
+
+
+			<div class="col-md-6 form-group">
+				<label>Last Name</label>
+			  	<input type="text" class="form-control" value="{{$user->last_name}}">
+			</div> <!-- form-group end.// -->
+
+
+			<div class="col-md-6 form-group">
 				<label>Email</label>
-			  	<input type="email" class="form-control" value="vosidiy@gmail.com">
-			</div> <!-- form-group end.// -->
+			  	<input type="email" class="form-control" value="{{$user->email}}">
+			</div>
+			 <!-- form-group end.// -->
+
+			<!-- <div class="form-group col-md-6">
+			  <label>Phone</label>
+			  <input type="text" class="form-control" value="{{$user->phone_number}}">
+			</div>  -->
+			<!-- form-group end.// -->
+
 		</div> <!-- form-row.// -->
 		
 		<div class="form-row">
-			<div class="form-group col-md-6">
-			  <label>Country</label>
-			  <select id="inputState" class="form-control">
-			    <option> Choose...</option>
-			      <option>Uzbekistan</option>
-			      <option>Russia</option>
-			      <option selected="">United States</option>
-			      <option>India</option>
-			      <option>Afganistan</option>
-			  </select>
-			</div> <!-- form-group end.// -->
+
 			<div class="form-group col-md-6">
 			  <label>City</label>
-			  <input type="text" class="form-control">
+			  <input type="text" class="form-control" value="{{$user->city}}">
 			</div> <!-- form-group end.// -->
-		</div> <!-- form-row.// -->
 
-		<div class="form-row">
+			<div class="form-group col-md-6">
+			  <label>State</label>
+			  <select id="inputState" class="form-control">
+				  <option selected value="">--- Select State ---</option>
+				  @foreach($states as $state)
+			      	<option value="{{$state->id}}">{{$state->name}}</option>
+				  @endforeach
+			  </select>
+			</div> <!-- form-group end.// -->
+
 			<div class="form-group col-md-6">
 			  <label>Zip</label>
-			  <input type="text" class="form-control" value="123009">
+			  <input type="text" class="form-control" value="{{$user->zip}}">
 			</div> <!-- form-group end.// -->
-			<div class="form-group col-md-6">
-			  <label>Phone</label>
-			  <input type="text" class="form-control" value="+123456789">
-			</div> <!-- form-group end.// -->
+
+			
 		</div> <!-- form-row.// -->
+
 
 		<button class="btn btn-primary">Save</button>	
 		<button class="btn btn-light">Change password</button>	
