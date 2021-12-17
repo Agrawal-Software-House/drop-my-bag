@@ -1,13 +1,3 @@
-CREATE TABLE IF NOT EXISTS `states` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
-
---
--- Dumping data for table `state_list`
---
-
 INSERT INTO `states` (`id`, `name`) VALUES
 (1, 'ANDAMAN AND NICOBAR ISLANDS'),
 (2, 'ANDHRA PRADESH'),
