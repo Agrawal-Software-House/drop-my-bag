@@ -57,6 +57,7 @@ Route::group(['namespace' => 'customer'], function () {
   Route::get('/product/{slug}','HomeController@showCategoryPage')->name('customer.category');
 
   Route::get('/customer/home','ProfileController@home');
+  Route::post('/customer/setting/update/{id}','ProfileController@updateUserInfo')->name('single_user.update');
   Route::get('/customer/setting','ProfileController@showSetting');
   
   Route::resource('/customer/orders','CustomerOrderController',[

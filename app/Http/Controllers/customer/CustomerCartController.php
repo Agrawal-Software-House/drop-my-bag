@@ -17,6 +17,11 @@ class CustomerCartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('customer', ['except' => 'logout']);
+    }
+    
     public function index(customerCartDatatable $dataTable)
     {
         return $dataTable->render('customer.account.mycart');
