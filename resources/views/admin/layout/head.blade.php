@@ -111,5 +111,16 @@
   {
     width: 100% !important;
   }
+
+  .nav-link.active
+  {
+    background-color: rgba(12, 5, 38, 0.3) !important;
+  }
+
+  .nav-item .nav-treeview .nav-item a
+  {
+    padding-left: 20px !important;
+  }
+
 </style>
 </head>

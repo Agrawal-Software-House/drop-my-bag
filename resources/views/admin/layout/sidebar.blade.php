@@ -68,35 +68,41 @@
              with font-awesome or any other icon font library -->
         <li class="nav-item">
           <a href="{{ route('admin.home') }}" class="nav-link">
-            <i class="nav-icon far fa-calendar-alt"></i>
+            <i class="nav-icon fas fa-tv"></i>
             <p>
               Dashboard
-              <span class="badge badge-info right">2</span>
             </p>
           </a>
         </li>
 
         <li class="nav-header">Manage Product</li>
         <li class="nav-item">
-          <a href="{{ route('admin.category.index') }}" class="nav-link">
-            <i class="nav-icon far fa-calendar-alt"></i>
+          <a href="{{ route('admin.category.index') }}" class="nav-link {{Request::is('admin/category*') ? 'active': ''}}">
+            <i class="nav-icon fas fa-bars"></i>
             <p>
               Category
-              <span class="badge badge-info right">2</span>
+              <span class="badge badge-danger right">
+                {{AdminSidebarHelper::CATEGORY_COUNT()}}
+              </span>
             </p>
           </a>
         </li>
+
         <li class="nav-item">
-          <a href="{{ route('admin.sub-category.index') }}" class="nav-link">
-            <i class="nav-icon far fa-image"></i>
+          <a href="{{ route('admin.sub-category.index') }}" class="nav-link {{Request::is('admin/sub-category*') ? 'active': ''}}">
+            <i class="nav-icon fas fa-th"></i>
             <p>
               Sub Category
+              <span class="badge badge-danger right">
+                {{AdminSidebarHelper::SUB_CATEGORY_COUNT()}}
+              </span>
             </p>
           </a>
         </li>
-        <li class="nav-item">
+
+        <li class="nav-item {{Request::is('admin/product*') ? 'menu-open': ''}}">
           <a href="#" class="nav-link">
-            <i class="nav-icon far fa-envelope"></i>
+            <i class="nav-icon fas fa-box"></i>
             <p>
               Product
               <i class="fas fa-angle-left right"></i>
@@ -104,27 +110,42 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('admin.product.approved') }}" class="nav-link">
+              <a href="{{ route('admin.product.approved') }}" class="nav-link {{Request::is('admin/product/approved*') ? 'active': ''}}">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Approved</p>
+                <p>
+                  Approved
+                  <span class="badge badge-danger right">
+                    {{AdminSidebarHelper::PRODUCT_COUNT('2')}}
+                  </span>
+                </p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('admin.product.pending') }}" class="nav-link">
+              <a href="{{ route('admin.product.pending') }}" class="nav-link {{Request::is('admin/product/pending*') ? 'active': ''}}">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Pending</p>
+                <p>
+                  Pending
+                  <span class="badge badge-danger right">
+                    {{AdminSidebarHelper::PRODUCT_COUNT('1')}}
+                  </span>
+                </p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('admin.product.disapproved') }}" class="nav-link">
+              <a href="{{ route('admin.product.disapproved') }}" class="nav-link {{Request::is('admin/product/disapproved*') ? 'active': ''}}">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Disapproved</p>
+                <p>
+                  Disapproved
+                  <span class="badge badge-danger right">
+                    {{AdminSidebarHelper::PRODUCT_COUNT('3')}}
+                  </span>
+                </p>
               </a>
             </li>
           </ul>
         </li>
 
-        <li class="nav-header">Manange Orders</li>
+        <!-- <li class="nav-header">Manange Orders</li>
         <li class="nav-item">
           <a href="iframe.html" class="nav-link">
             <i class="nav-icon fas fa-ellipsis-h"></i>
@@ -142,39 +163,73 @@
             <i class="nav-icon fas fa-file"></i>
             <p>Returned</p>
           </a>
-        </li>
+        </li> -->
 
 
         <li class="nav-header">Merchants</li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a href="{{ route('admin.merchant.pending') }}" class="nav-link">
             <i class="fas fa-circle nav-icon"></i>
-            <p>Pending</p>
+            <p>
+              Pending
+              <span class="badge badge-danger right">
+                {{AdminSidebarHelper::CUSTOMER_COUNT()}}
+              </span>
+            </p>
           </a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a href="{{ route('admin.merchant.approved') }}" class="nav-link">
-            <i class="fas fa-circle nav-icon"></i>
-            <p>Approved</p>
+            <i class="fas fa-user-tie nav-icon"></i>
+            <p>
+              Active Merchants
+              <span class="badge badge-danger right">
+                {{AdminSidebarHelper::CUSTOMER_COUNT()}}
+              </span>
+            </p>
           </a>
         </li>
 
         <li class="nav-header">Customers</li>
         <li class="nav-item">
-          <a href="{{ route('admin.customer.index') }}" class="nav-link">
-            <i class="nav-icon far fa-circle text-warning"></i>
-            <p>Active Customers</p>
+          <a href="{{ route('admin.customer.index') }}" class="nav-link {{Request::is('admin/customer*') ? 'active': ''}}">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+              Active Customers
+              <span class="badge badge-danger right">
+                {{AdminSidebarHelper::CUSTOMER_COUNT()}}
+              </span>
+            </p>
           </a>
         </li>
         
 
         <li class="nav-header">Setting</li>
+
+        <li class="nav-item">
+          <a href="{{ route('admin.customer.index') }}" class="nav-link {{Request::is('admin/customer*') ? 'active': ''}}">
+            <i class="nav-icon fas fa-user-alt"></i>
+            <p>
+              My Profile
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="{{ route('admin.customer.index') }}" class="nav-link {{Request::is('admin/customer*') ? 'active': ''}}">
+            <i class="nav-icon fas fa-key"></i>
+            <p>
+              Change Password
+            </p>
+          </a>
+        </li>
+
         <li class="nav-item">
           <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   {{ csrf_field() }}
               </form>
-            <i class="nav-icon far fa-circle text-info"></i>
+              <i class="nav-icon fas fa-sign-out-alt"></i>
             <p>Logout</p>
           </a>
         </li>

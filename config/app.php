@@ -233,6 +233,7 @@ return [
 
 
         'commanHelper' => App\Helpers\GeneralHelper::class,
+        'AdminSidebarHelper' => App\Helpers\AdminSidebarHelper::class,
 
 
     ],

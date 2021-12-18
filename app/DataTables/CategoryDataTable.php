@@ -8,6 +8,8 @@ use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use Illuminate\Support\Facades\Storage;
+
 
 class CategoryDataTable extends DataTable
 {
@@ -33,7 +35,7 @@ class CategoryDataTable extends DataTable
                   </div>";
             })
             ->editColumn('image',function(Category $model){
-                return "<img src='/storage/$model->image' style='height: 70px;' alt=''>";
+                return "<img src='".Storage::url($model->image)."' style='height: 70px;' alt=''>";
             })
             ->rawColumns(['image', 'action']);
     }
