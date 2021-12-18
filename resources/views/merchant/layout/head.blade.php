@@ -45,8 +45,8 @@
 <style>
   body
   {
-    font-family: 'Poppins', sans-serif !important;
-    /*font-family: 'Roboto', sans-serif !important;*/
+    /* font-family: 'Poppins', sans-serif !important; */
+    font-family: 'Roboto', sans-serif !important;
   }
 
     .nav-header
@@ -56,7 +56,7 @@
     }
     .main-sidebar,.brand-link
     {
-      background-color: #52455C !important;
+      background-color: rgba(242, 144, 1,0.7) !important;
     }
 
     .sidebar .nav-link p, .user-panel a, .nav-icon,.brand-text
@@ -65,7 +65,7 @@
     }
     .content-header
     {
-      background: #fff;
+      /* background: #fff; */
       padding: 14px 10px;
       box-shadow: 1px 0px 20px rgb(0 0 0 / 8%);
       margin-bottom: 25px;

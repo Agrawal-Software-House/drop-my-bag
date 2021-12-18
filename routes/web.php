@@ -19,6 +19,10 @@ Route::group(['namespace' => 'admin'], function () {
   Route::get('/admin/home','HomeController@index')->name('admin.home');
 
 
+  Route::get('/admin/setting/change-password','setting\AdminProfileController@showPasswordPage')->name('admin.setting.password');
+  Route::get('/admin/setting/my-profile','setting\AdminProfileController@showMyProfile')->name('admin.setting.my-profile');
+  
+  
   Route::get('/admin/product/disapproved','product\disApprovedProductController@index')->name('admin.product.disapproved');
   Route::get('/admin/product/approved','product\approvedProductController@index')->name('admin.product.approved');
   Route::get('/admin/product/pending','product\pendingProductController@index')->name('admin.product.pending');

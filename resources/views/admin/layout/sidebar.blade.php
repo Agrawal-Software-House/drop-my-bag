@@ -207,7 +207,7 @@
         <li class="nav-header">Setting</li>
 
         <li class="nav-item">
-          <a href="{{ route('admin.customer.index') }}" class="nav-link {{Request::is('admin/customer*') ? 'active': ''}}">
+          <a href="{{ route('admin.setting.my-profile') }}" class="nav-link {{Request::is('admin/setting/my-profile*') ? 'active': ''}}">
             <i class="nav-icon fas fa-user-alt"></i>
             <p>
               My Profile
@@ -216,7 +216,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="{{ route('admin.customer.index') }}" class="nav-link {{Request::is('admin/customer*') ? 'active': ''}}">
+          <a href="{{ route('admin.setting.password') }}" class="nav-link {{Request::is('admin/setting/change-password*') ? 'active': ''}}">
             <i class="nav-icon fas fa-key"></i>
             <p>
               Change Password
