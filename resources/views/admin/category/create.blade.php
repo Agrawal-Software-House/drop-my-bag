@@ -52,7 +52,6 @@
 
                   <button type="button" class="btn btn-success" onclick="
 
-                    $('#loader').show();
                     var data = new FormData(this.form);
                     $.ajax({
                       type: 'POST',
@@ -61,42 +60,27 @@
                       processData: false,
                       contentType: false,
                       dataType: 'json',
+                      
                       success: function(response){
                         successToast('Category Added Successfully!!','Category');
                         window.location.replace('/admin/category');
                       },
+
                       complete: function(response){
-                          $('#loader').hide();
-                        }
-                        ,
+                      
+                      },
+
                       error: function(xhr, status, data){
-                        if(xhr.responseJSON.errors.name)
-                        {
-                          $('#error_name').text(xhr.responseJSON.errors.name);
-                        }
-                        else
-                        {
-                          $('#error_name').text('');
+
+                        var errors = xhr.responseJSON.errors;
+                        $('.error').text('');
+                        $('.text-danger').text('');
+                        for (const [key, value] of Object.entries(errors)) {
+                          $('#error_'+key).text(value);
                         }
 
-                        if(xhr.responseJSON.errors.image)
-                        {
-                          $('#error_image').text(xhr.responseJSON.errors.image);
-                        }
-                        else
-                        {
-                          $('#error_image').text('');
-                        }
-
-                        if(!xhr.responseJSON.errors)
-                        {
-                          errorToast('Category', 'Techincal issue, contact your admin!');
-                        }
-                        else
-                        {
-                          errorToast('Please Fill all required fields','Validation Error!!');
-                        }
-                        }
+                        xhr.responseJSON.errors ? errorToast('Please Fill all required fields','Validation Error!!') : errorToast('Techincal issue!!');
+                      }
                       
                     });
                     e.preventDefault();">Create</button>
