@@ -7,6 +7,10 @@
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;500;700&display=swap" rel="stylesheet">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="/admin/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -46,7 +50,8 @@
   body
   {
     /* font-family: 'Poppins', sans-serif !important; */
-    font-family: 'Roboto', sans-serif !important;
+    /*font-family: 'Roboto', sans-serif !important;*/
+    font-family: 'Roboto Slab', serif !important;
   }
 
     .nav-header
