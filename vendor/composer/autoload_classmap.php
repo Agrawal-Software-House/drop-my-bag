@@ -45,6 +45,7 @@ return array(
     'App\\Http\\Controllers\\admin\\product\\disApprovedProductController' => $baseDir . '/app/Http/Controllers/admin/product/disApprovedProductController.php',
     'App\\Http\\Controllers\\admin\\product\\pendingProductController' => $baseDir . '/app/Http/Controllers/admin/product/pendingProductController.php',
     'App\\Http\\Controllers\\admin\\product\\productController' => $baseDir . '/app/Http/Controllers/admin/product/productController.php',
+    'App\\Http\\Controllers\\admin\\setting\\AdminProfileController' => $baseDir . '/app/Http/Controllers/admin/setting/AdminProfileController.php',
     'App\\Http\\Controllers\\customer\\CartController' => $baseDir . '/app/Http/Controllers/customer/CartController.php',
     'App\\Http\\Controllers\\customer\\CustomerAddressController' => $baseDir . '/app/Http/Controllers/customer/CustomerAddressController.php',
     'App\\Http\\Controllers\\customer\\CustomerCartController' => $baseDir . '/app/Http/Controllers/customer/CustomerCartController.php',

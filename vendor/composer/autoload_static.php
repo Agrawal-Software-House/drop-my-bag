@@ -649,6 +649,7 @@ class ComposerStaticInit91c4f566a07a3830e8350eaf0331c1d8
         'App\\Http\\Controllers\\admin\\product\\disApprovedProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/product/disApprovedProductController.php',
         'App\\Http\\Controllers\\admin\\product\\pendingProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/product/pendingProductController.php',
         'App\\Http\\Controllers\\admin\\product\\productController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/product/productController.php',
+        'App\\Http\\Controllers\\admin\\setting\\AdminProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/setting/AdminProfileController.php',
         'App\\Http\\Controllers\\customer\\CartController' => __DIR__ . '/../..' . '/app/Http/Controllers/customer/CartController.php',
         'App\\Http\\Controllers\\customer\\CustomerAddressController' => __DIR__ . '/../..' . '/app/Http/Controllers/customer/CustomerAddressController.php',
         'App\\Http\\Controllers\\customer\\CustomerCartController' => __DIR__ . '/../..' . '/app/Http/Controllers/customer/CustomerCartController.php',

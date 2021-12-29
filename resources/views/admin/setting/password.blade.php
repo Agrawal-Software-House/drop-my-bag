@@ -33,64 +33,49 @@
                 <form method="post" enctype="multipart/form-data">
                   {{ csrf_field() }}
                   <div class="form-group">
-                    <label for="name">Password</label>
-                    <input type="text" class="form-control form-control-border" id="name" name="name" placeholder="Enter Name">
-                    <div class="text-danger" id="error_name"></div>
+                    <label for="password">Password</label>
+                    <input type="text" class="form-control form-control-border" id="password" name="password" placeholder="Enter Password">
+                    <div class="text-danger" id="error_password"></div>
                   </div>
 
                   <div class="form-group">
-                    <label for="email">Confirm Password</label>
-                    <input type="text" class="form-control form-control-border" id="email" name="email" placeholder="Enter email">
-                    <div class="text-danger" id="error_email"></div>
+                    <label for="password_confirmation">Confirm Password</label>
+                    <input type="password" class="form-control form-control-border" id="password_confirmation" name="password_confirmation" placeholder="Enter Password Again">
+                    <div class="text-danger" id="error_password_confirmation"></div>
                   </div>
 
                   <button type="button" class="btn btn-success" onclick="
 
-                    $('#loader').show();
                     var data = new FormData(this.form);
+
                     $.ajax({
                       type: 'POST',
-                      url: '{{ route('admin.category.store') }}',
+                      url: '{{ route('admin.setting.password.update') }}',
                       data: data,
                       processData: false,
                       contentType: false,
                       dataType: 'json',
-                      success: function(response){
-                        successToast('Category Added Successfully!!','Category');
-                        window.location.replace('/admin/category');
+
+                      success: function(data){
+                        successToast(data.message);
+                        location.reload();
                       },
-                      complete: function(response){
-                          $('#loader').hide();
-                        }
-                        ,
+
+                      complete: function(data){
+                      },
+
                       error: function(xhr, status, data){
-                        if(xhr.responseJSON.errors.name)
-                        {
-                          $('#error_name').text(xhr.responseJSON.errors.name);
-                        }
-                        else
-                        {
-                          $('#error_name').text('');
+
+                        var errors = xhr.responseJSON.errors;
+                        $('.error').text('');
+                        $('.text-danger').text('');
+                        for (const [key, value] of Object.entries(errors)) {
+                          $('#error_'+key).text(value);
                         }
 
-                        if(xhr.responseJSON.errors.image)
-                        {
-                          $('#error_image').text(xhr.responseJSON.errors.image);
-                        }
-                        else
-                        {
-                          $('#error_image').text('');
-                        }
-
-                        if(!xhr.responseJSON.errors)
-                        {
-                          errorToast('Category', 'Techincal issue, contact your admin!');
-                        }
-                        else
-                        {
-                          errorToast('Please Fill all required fields','Validation Error!!');
-                        }
-                        }
+                        xhr.responseJSON.errors ? errorToast('Please Fill all required fields','Validation Error!!') : errorToast('Techincal issue!!');
+                          
+                      }
                       
                     });
                     e.preventDefault();">Save</button>

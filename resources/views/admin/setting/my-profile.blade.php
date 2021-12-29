@@ -34,69 +34,53 @@
                   {{ csrf_field() }}
                   <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control form-control-border" id="name" name="name" placeholder="Enter Name">
+                    <input type="text" class="form-control form-control-border" id="name" name="name" placeholder="Enter Name" value="{{$admin->name}}">
                     <div class="text-danger" id="error_name"></div>
                   </div>
 
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="text" class="form-control form-control-border" id="email" name="email" placeholder="Enter email">
+                    <input type="text" class="form-control form-control-border" id="email" name="email" placeholder="Enter email" value="{{$admin->email}}">
                     <div class="text-danger" id="error_email"></div>
                   </div>
 
                   <div class="form-group">
-                    <label for="image">Profile Pic</label>
-                    <input type="file" class="dropify" / name="image" id="image">
-                    <div class="text-danger" id="error_image"></div>
+                    <label for="profile_image">Profile Pic</label>
+                    <input type="file" class="dropify" / name="profile_image" id="profile_image" data-default-file="{{Storage::url($admin->profile_image)}}">
+
+                    <div class="text-danger" id="error_profile_image"></div>
                   </div>
 
                   <button type="button" class="btn btn-success" onclick="
-
-                    $('#loader').show();
                     var data = new FormData(this.form);
                     $.ajax({
                       type: 'POST',
-                      url: '{{ route('admin.category.store') }}',
+                      url: '{{ route('admin.setting.my-profile.update') }}',
                       data: data,
                       processData: false,
                       contentType: false,
                       dataType: 'json',
-                      success: function(response){
-                        successToast('Category Added Successfully!!','Category');
-                        window.location.replace('/admin/category');
+                      success: function(data){
+                        successToast(data.message);
+                        location.reload();
                       },
-                      complete: function(response){
-                          $('#loader').hide();
-                        }
-                        ,
-                      error: function(xhr, status, data){
-                        if(xhr.responseJSON.errors.name)
-                        {
-                          $('#error_name').text(xhr.responseJSON.errors.name);
-                        }
-                        else
-                        {
-                          $('#error_name').text('');
+
+                      complete: function(data){
+
+                      },
+
+                      error: function(xhr, status, data)
+                      {
+
+                        var errors = xhr.responseJSON.errors;
+                        $('.error').text('');
+                        $('.text-danger').text('');
+                        for (const [key, value] of Object.entries(errors)) {
+                          $('#error_'+key).text(value);
                         }
 
-                        if(xhr.responseJSON.errors.image)
-                        {
-                          $('#error_image').text(xhr.responseJSON.errors.image);
-                        }
-                        else
-                        {
-                          $('#error_image').text('');
-                        }
-
-                        if(!xhr.responseJSON.errors)
-                        {
-                          errorToast('Category', 'Techincal issue, contact your admin!');
-                        }
-                        else
-                        {
-                          errorToast('Please Fill all required fields','Validation Error!!');
-                        }
-                        }
+                        xhr.responseJSON.errors ? errorToast('Please Fill all required fields','Validation Error!!') : errorToast('Techincal issue!!');
+                      }
                       
                     });
                     e.preventDefault();">Save</button>

@@ -19,8 +19,17 @@ Route::group(['namespace' => 'admin'], function () {
   Route::get('/admin/home','HomeController@index')->name('admin.home');
 
 
+  //update password
   Route::get('/admin/setting/change-password','setting\AdminProfileController@showPasswordPage')->name('admin.setting.password');
+
+  Route::post('/admin/setting/change-password/update','setting\AdminProfileController@updateAdminPassword')->name('admin.setting.password.update');
+
+
+
+  //update profile
   Route::get('/admin/setting/my-profile','setting\AdminProfileController@showMyProfile')->name('admin.setting.my-profile');
+  
+  Route::post('/admin/setting/my-profile/update','setting\AdminProfileController@UpdateAdminProfile')->name('admin.setting.my-profile.update');
   
   
   Route::get('/admin/product/disapproved','product\disApprovedProductController@index')->name('admin.product.disapproved');

@@ -45,7 +45,7 @@
 
                 <div class="form-group">
                   <label for="image">Category Image</label>
-                  <input type="file" class="dropify" name="image" id="image" data-default-file="/storage/{{$category->image}}" />
+                  <input type="file" class="dropify" name="image" id="image" data-default-file="{{Storage::url($category->image)}}" />
                   @error('image')
                       <div class="alert alert-danger">{{ $message }}</div>
                   @enderror
