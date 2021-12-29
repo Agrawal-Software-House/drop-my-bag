@@ -11,8 +11,8 @@
 			<a class="list-group-item" href="{{ url('/customer/orders') }}"> My Orders </a>
 			<a class="list-group-item" href="{{ url('/customer/wishlist') }}"> My wishlist </a>
 			<a class="list-group-item" href="{{ url('/customer/setting') }}"> Settings </a>
-			<a  href="{{ url('/customer/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="list-group-item"> Log out </a>
-            <form id="logout-form" action="{{ url('/customer/logout') }}" method="POST" style="display: none;">
+			<a  href="javascript:void(0);" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="list-group-item"> Log out </a>
+            <form id="logout-form" action="{{ route('customer.logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
             </form>
 		</nav>

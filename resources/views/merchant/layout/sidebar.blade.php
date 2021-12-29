@@ -157,10 +157,12 @@
 
 
         <li class="nav-item">
-          <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+          <a href="javascript:void(0);" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
+
+              <form id="logout-form" action="{{ route('merchant.logout') }}" method="POST" style="display: none;">
                   {{ csrf_field() }}
               </form>
+
             <img src="{{ asset('merchant\img\sidebar\logout.png') }}" alt="">
             <p>Logout</p>
           </a>

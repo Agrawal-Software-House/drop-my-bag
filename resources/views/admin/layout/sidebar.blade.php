@@ -226,10 +226,12 @@
         </li>
 
         <li class="nav-item">
-          <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+          <a href="javascript:void(0);" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
+
+              <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                   {{ csrf_field() }}
               </form>
+
               <i class="nav-icon fas fa-sign-out-alt"></i>
             <p>Logout</p>
           </a>

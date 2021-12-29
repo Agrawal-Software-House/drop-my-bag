@@ -96,7 +96,7 @@ Route::group(['namespace' => 'customer'], function () {
 Route::group(['prefix' => 'admin'], function () {
   Route::get('/login', 'AdminAuth\LoginController@showLoginForm')->name('login');
   Route::post('/login', 'AdminAuth\LoginController@login');
-  Route::post('/logout', 'AdminAuth\LoginController@logout')->name('logout');
+  Route::post('/logout', 'AdminAuth\LoginController@logout')->name('admin.logout');
 
   // Route::get('/register', 'AdminAuth\RegisterController@showRegistrationForm')->name('register');
   // Route::post('/register', 'AdminAuth\RegisterController@register');
@@ -145,7 +145,7 @@ Route::group(['namespace' => 'merchant'], function () {
 Route::group(['prefix' => 'seller'], function () {
   Route::get('/login', 'MerchantAuth\LoginController@showLoginForm')->name('login');
   Route::post('/login', 'MerchantAuth\LoginController@login');
-  Route::post('/logout', 'MerchantAuth\LoginController@logout')->name('logout');
+  Route::post('/logout', 'MerchantAuth\LoginController@logout')->name('merchant.logout');
 
   Route::get('/register', 'MerchantAuth\RegisterController@showRegistrationForm')->name('register');
   Route::post('/register', 'MerchantAuth\RegisterController@register');
@@ -159,7 +159,7 @@ Route::group(['prefix' => 'seller'], function () {
 Route::group(['prefix' => 'customer'], function () {
   Route::get('/login', 'CustomerAuth\LoginController@showLoginForm')->name('login');
   Route::post('/login', 'CustomerAuth\LoginController@login');
-  Route::post('/logout', 'CustomerAuth\LoginController@logout')->name('logout');
+  Route::post('/logout', 'CustomerAuth\LoginController@logout')->name('customer.logout');
 
   Route::get('/register', 'CustomerAuth\RegisterController@showRegistrationForm')->name('register');
   Route::post('/register', 'CustomerAuth\RegisterController@register');
