@@ -113,6 +113,19 @@ Route::View('/seller','merchant.landing')->name('merchant.landing');
 
 Route::group(['namespace' => 'merchant'], function () {
 
+  //update password
+  Route::get('/merchant/setting/change-password','setting\MerchantProfileController@showPasswordPage')->name('merchant.setting.password');
+
+  Route::post('/merchant/setting/change-password/update','setting\MerchantProfileController@updateMerchantPassword')->name('merchant.setting.password.update');
+
+
+
+  //update profile
+  Route::get('/merchant/setting/my-profile','setting\MerchantProfileController@showMyProfile')->name('merchant.setting.my-profile');
+  
+  Route::post('/merchant/setting/my-profile/update','setting\MerchantProfileController@UpdateMerchantProfile')->name('merchant.setting.my-profile.update');
+
+
   Route::get('/merchant/home','HomeController@index')->name('merchant.home');
 
   Route::get('/merchant/product/disapproved','product\disApprovedProductController@index')->name('merchant.product.disapproved');

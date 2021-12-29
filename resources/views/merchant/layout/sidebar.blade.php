@@ -10,12 +10,6 @@
     <li class="nav-item">
       <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
-    <li class="nav-item d-none d-sm-inline-block">
-      <a href="{{ route('admin.home') }}" class="nav-link">Home</a>
-    </li>
-    <li class="nav-item d-none d-sm-inline-block">
-      <a href="#" class="nav-link">Contact</a>
-    </li>
   </ul>
 
   <!-- Right navbar links -->
@@ -47,10 +41,11 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        <img src="{{Storage::url(Auth::guard('merchant')->user()->avtar)}}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
         <a href="#" class="d-block">{{Auth::guard('merchant')->user()->name}}</a>
+        <p class="mb-0 pb-0 white-text">{{Auth::guard('merchant')->user()->firm_name}}</p>
       </div>
     </div>
 
@@ -71,18 +66,17 @@
       <ul class="nav nav-pills nav-sidebar flex-column nav-legacy nav-flat nav-collapse-hide-child" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
           <a href="{{ route('merchant.home') }}" class="nav-link">
-            <i class="nav-icon far fa-calendar-alt"></i>
+            <img src="{{ asset('merchant\img\sidebar\dashboard.png') }}" alt="">
             <p>
               Dashboard
-              <span class="badge badge-info right">2</span>
             </p>
           </a>
         </li>
 
         <li class="nav-header">Manage Product</li>
         <li class="nav-item">
-          <a href="{{ route('merchant.product.create') }}" class="nav-link">
-            <i class="nav-icon fas fa-plus"></i>
+          <a href="{{ route('merchant.product.create') }}" class="nav-link {{Request::is('merchant/product/create*') ? 'active': ''}}">
+            <img src="{{ asset('merchant\img\sidebar\addProduct.png') }}" alt="">
             <p>
               Add new
             </p>
@@ -90,8 +84,8 @@
         </li>
 
         <li class="nav-item">
-          <a href="{{ route('merchant.product.approved') }}" class="nav-link">
-            <i class="nav-icon fas fa-check"></i>
+          <a href="{{ route('merchant.product.approved') }}" class="nav-link {{Request::is('merchant/product/approved*') ? 'active': ''}}">
+            <img src="{{ asset('merchant\img\sidebar\approve.png') }}" alt="">
             <p>
               Approved
               <span class="badge badge-success right">2</span>
@@ -100,8 +94,8 @@
         </li>
 
         <li class="nav-item">
-          <a href="{{ route('merchant.product.pending') }}" class="nav-link">
-            <i class="nav-icon far fa-clock"></i>
+          <a href="{{ route('merchant.product.pending') }}" class="nav-link {{Request::is('merchant/product/pending*') ? 'active': ''}}">
+            <img src="{{ asset('merchant\img\sidebar\pending.png') }}" alt="">
             <p>
               Pending
               <span class="badge badge-danger right">2</span>
@@ -110,8 +104,8 @@
         </li>
 
         <li class="nav-item">
-          <a href="{{ route('merchant.product.disapproved') }}" class="nav-link">
-            <i class="fas fa-times nav-icon"></i>
+          <a href="{{ route('merchant.product.disapproved') }}" class="nav-link {{Request::is('merchant/product/disapproved*') ? 'active': ''}}">
+            <img src="{{ asset('merchant\img\sidebar\disapprove.png') }}" alt="">
             <p>
               Disapproved
               <span class="badge badge-info right">2</span>
@@ -144,8 +138,8 @@
         <li class="nav-header">Setting</li>
 
         <li class="nav-item">
-          <a href="{{ route('admin.setting.my-profile') }}" class="nav-link {{Request::is('admin/setting/my-profile*') ? 'active': ''}}">
-            <i class="nav-icon fas fa-user-alt"></i>
+          <a href="{{ route('merchant.setting.my-profile') }}" class="nav-link {{Request::is('merchant/setting/my-profile*') ? 'active': ''}}">
+            <img src="{{ asset('merchant\img\sidebar\profile.png') }}" alt="">
             <p>
               My Profile
             </p>
@@ -153,8 +147,8 @@
         </li>
 
         <li class="nav-item">
-          <a href="{{ route('admin.setting.password') }}" class="nav-link {{Request::is('admin/setting/change-password*') ? 'active': ''}}">
-            <i class="nav-icon fas fa-key"></i>
+          <a href="{{ route('merchant.setting.password') }}" class="nav-link {{Request::is('merchant/setting/change-password*') ? 'active': ''}}">
+            <img src="{{ asset('merchant\img\sidebar\password.png') }}" alt="">
             <p>
               Change Password
             </p>
@@ -167,7 +161,7 @@
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   {{ csrf_field() }}
               </form>
-            <i class="nav-icon fas fa-sign-out-alt"></i>
+            <img src="{{ asset('merchant\img\sidebar\logout.png') }}" alt="">
             <p>Logout</p>
           </a>
         </li>

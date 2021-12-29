@@ -100,6 +100,27 @@
     width: 100% !important;
   }
 
+  .nav-item a img
+  {
+    height: 30px !important;
+    margin-right: 10px;
+  }
+
+  .nav-item a p
+  {
+    font-size: 16px !important;
+  }
+
+  .nav-link.active
+  {
+    background-color: rgba(12, 5, 38, 0.3) !important;
+    font-weight: bold !important;
+  }
+
+  .white-text
+  {
+    color: white !important;
+  }
 
 </style>
 </head>

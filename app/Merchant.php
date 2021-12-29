@@ -27,7 +27,8 @@ class Merchant extends Authenticatable
         'gst',
         'address',
         'pincode',
-        'business_type'
+        'business_type',
+        'avtar'
     ];
 
     /**
