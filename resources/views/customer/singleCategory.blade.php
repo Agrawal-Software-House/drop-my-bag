@@ -20,55 +20,82 @@
 	<ol class="breadcrumb">
 	    <li class="breadcrumb-item"><a href="{{ route('customer.home') }}">Home</a></li>
 	    <li class="breadcrumb-item"><a href="#">{{$category->name}}</a></li>
-	    {{-- <li class="breadcrumb-item"><a href="#">Sub category</a></li> --}}
-	    {{-- <li class="breadcrumb-item active" aria-current="page">Items</li> --}}
 	</ol>  
 	</nav> <!-- col.// -->
 </div> <!-- row.// -->
 <hr>
 <div class="row">
 	<div class="col-md-2">Filter by</div> <!-- col.// -->
-	<div class="col-md-10"> 
-		<ul class="list-inline">
-		  {{-- subcategory filter --}}
-		  <li class="list-inline-item mr-3 dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Sub Category</a>
-            <div class="dropdown-menu p-3" style="max-width:400px;">	
-            	@foreach ($category->subCategory as $subCategory)
-            		<label class="form-check">
-            			 <input type="radio" name="sub_category" class="form-check-input"> {{$subCategory->name}}
-            		</label>
-            	@endforeach
-            </div> 
-	      </li>
+	<div class="col-md-10">
+		<form action="{{ route('customer.category', $category->slug) }}" id="productSearchForm">
+			@csrf
+			<ul class="list-inline">
+			  {{-- subcategory filter --}}
+			  <li class="list-inline-item mr-3 dropdown">
+			  	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Sub Category</a>
+	            <div class="dropdown-menu p-3" style="max-width:400px;">	
+	            	@foreach ($category->subCategory as $subCategory)
+	            		<label class="form-check">
+	            			 <input type="radio" name="sub_category"
 
-	      {{-- brand name --}}
-	      <li class="list-inline-item mr-3 dropdown">
-	      	<a href="#" class="dropdown-toggle" data-toggle="dropdown">  Brand Name </a>
-            <div class="dropdown-menu p-3">	
-		      <label class="form-check"> 	 
-		      	<input type="checkbox" name="brand[]" class="form-check-input"> 
-		      		China    
-		      </label>
-            </div>
-	      </li>
+	            			 @if ($selected_sub_category == $subCategory->id)
+	            			 	checked 
+	            			 @endif
+
+	            			  class="form-check-input" value="{{$subCategory->id}}"> {{$subCategory->name}}
+	            		</label>
+	            	@endforeach
+	            </div> 
+		      </li>
+
+		      {{-- brand name --}}
+		      <li class="list-inline-item mr-3 dropdown">
+		      	<a href="#" class="dropdown-toggle" data-toggle="dropdown">  Brand Name </a>
+	            <div class="dropdown-menu p-3">	
+	              @foreach ($brand_names as $brand)
+	              	<label class="form-check"> 	 
+	              		<input type="checkbox" name="brand[]"
+	              			@if ($selected_brand)
+	              				@if (in_array($brand, $selected_brand))
+	              					checked 
+	              				@endif
+	              			@endif
+
+	              			 class="form-check-input" value="{{$brand}}"> 
+	              			{{$brand}}    
+	              	</label>
+	              @endforeach
+			      
+	            </div>
+		      </li>
+			
+			  <li class="list-inline-item mr-3">
+			  	<div class="form-inline">
+			  		<label class="mr-2">Price</label>
+					<input class="form-control form-control-sm" name="min_price" min="0" placeholder="Min" type="number" value="{{$selected_min_price}}">
+						<span class="px-2"> - </span>
+					<input class="form-control form-control-sm" name="max_price" placeholder="Max" type="number" value="{{$selected_max_price}}">
+
+					<button type="submit" class="btn btn-sm btn-light ml-2">Filter</button>
+				</div>
+			  </li>
+
+			  <li class="list-inline-item mr-3">
+			  	<label class="custom-control mt-1 custom-checkbox">
+				  <input type="checkbox" class="custom-control-input"
+				  	@if ($selected_returnable == 1)
+				  		checked 
+				  	@endif
+				   name="returnable">
+				  <div class="custom-control-label">Returnable
+				  </div>
+				</label>
+			  </li>
+
+
+			</ul>
+		</form> 
 		
-		  <li class="list-inline-item mr-3">
-		  	<div class="form-inline">
-		  		<label class="mr-2">Price</label>
-				<input class="form-control form-control-sm" placeholder="Min" type="number">
-					<span class="px-2"> - </span>
-				<input class="form-control form-control-sm" placeholder="Max" type="number">
-				<button type="submit" class="btn btn-sm btn-light ml-2">Ok</button>
-			</div>
-		  </li>
-		  <li class="list-inline-item mr-3">
-		  	<label class="custom-control mt-1 custom-checkbox">
-			  <input type="checkbox" class="custom-control-input">
-			  <div class="custom-control-label">Returnable
-			  </div>
-			</label>
-		  </li>
-		</ul>
 	</div> <!-- col.// -->
 </div> <!-- row.// -->
 	</div> <!-- card-body .// -->
@@ -77,19 +104,13 @@
 
 <header class="mb-3">
 		<div class="form-inline">
-			<strong class="mr-md-auto">32 Items found </strong>
+			<strong class="mr-md-auto">{{$products->count()}} Items found </strong>
 			<select class="mr-2 form-control">
 				<option>Latest items</option>
 				<option>Trending</option>
 				<option>Most Popular</option>
 				<option>Cheapest</option>
 			</select>
-			<div class="btn-group">
-				<a href="#" class="btn btn-light active" data-toggle="tooltip" title="List view"> 
-					<i class="fa fa-bars"></i></a>
-				<a href="#" class="btn btn-light" data-toggle="tooltip" title="Grid view"> 
-					<i class="fa fa-th"></i></a>
-			</div>
 		</div>
 </header><!-- sect-heading -->
 
@@ -100,8 +121,16 @@
 		<div class="col-md-3">
 			<figure class="card card-product-grid">
 				<div class="img-wrap"> 
-					<span class="badge badge-danger"> NEW </span>
+					<span class="badge badge-danger"> 
+						@if ($product->piece >= 1)
+					  		In Stock
+					  	@else
+					  		Out of Stock
+					  	@endif 	
+					</span>
+
 					<img src="{{Storage::url($product->product_image)}}" style="width: 100%;">
+					
 				</div> <!-- img-wrap.// -->
 				<figcaption class="info-wrap">
 						<a href="{{ route('customer.productPage',
@@ -111,8 +140,28 @@
 							Crypt::encryptString($product->id)
 						]) }}" 
 						class="title mb-2">{{$product->product_name}}</a>
+
+						<div class="rating-wrap my-1">
+							<ul class="rating-stars">
+								<li style="width:80%" class="stars-active"> 
+									<i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+									<i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+									<i class="fa fa-star"></i> 
+								</li>
+								<li>
+									<i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+									<i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+									<i class="fa fa-star"></i> 
+								</li>
+							</ul>
+							<small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 orders </small>
+						</div>
+
 						<div class="price-wrap">
-							<span class="price">Rs 32.00</span> 
+							<span class="price">
+								Rs 
+								{{number_format($product->selling_price)}}
+							</span> 
 							<small class="text-muted">/per item</small>
 						</div> <!-- price-wrap.// -->
 						
@@ -125,7 +174,6 @@
 						<p class="mb-3">
 							<span class="tag"> <i class="fa fa-check"></i> Verified</span> 
 							<span class="tag"> 23 reviews </span>
-							<span class="tag"> India </span>
 						</p>
 
 						<div class="text-center text-nowrap">
@@ -163,5 +211,6 @@
 
 @include('customer.scripts.add_to_cart')
 @include('customer.scripts.add_to_wishlist')
+@include('customer.scripts.filterProduct')
 
 @endsection

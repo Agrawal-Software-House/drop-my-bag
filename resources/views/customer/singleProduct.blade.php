@@ -139,16 +139,48 @@
 			    @foreach ($similar_products as $similar_product)
 			    	<article class="media mb-3">
 
-			    	  <a href="#">
+			    	  <a href="{{ route('customer.productPage',
+						[
+							$similar_product->category->slug,
+							$similar_product->slug,
+							Crypt::encryptString($similar_product->id)
+						]) }}">
+
 			    	  	<img class="img-sm mr-3" src="{{Storage::url($similar_product->product_image)}}">
 			    	  </a>
 
 			    	  <div class="media-body">
 			    	    <h6 class="mt-0">
-			    	    	<a href="#">
+			    	    	<a href="{{ route('customer.productPage',
+									[
+										$similar_product->category->slug,
+										$similar_product->slug,
+										Crypt::encryptString($similar_product->id)
+									]) }}"
+							>
+
 			    	    		{{$similar_product->product_name}}
 			    	    	</a>
 			    	    </h6>
+
+			    	    <div class="rating-wrap my-1">
+			    	    	<ul class="rating-stars">
+			    	    		<li style="width:80%" class="stars-active"> 
+			    	    			<i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+			    	    			<i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+			    	    			<i class="fa fa-star"></i> 
+			    	    		</li>
+			    	    		<li>
+			    	    			<i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+			    	    			<i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+			    	    			<i class="fa fa-star"></i> 
+			    	    		</li>
+			    	    	</ul>
+			    	    	
+			    	    </div>
+
+			    	    <small class="label-rating text-muted">132 reviews</small>
+			    	    <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 orders </small>
 
 
 			    	    {{-- <p class="mb-2"> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin </p> --}}
