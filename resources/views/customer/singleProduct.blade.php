@@ -62,16 +62,11 @@
 </div> <!-- rating-wrap.// -->
 
 <div class="mb-3"> 
-	<var class="price h4">Rs 465,00</var> 
+	<var class="price h4">Rs {{number_format($product->selling_price)}}</var> 
 	<span class="text-muted">USD 562.65 incl. VAT</span> 
 </div> <!-- price-detail-wrap .// -->
 
-<p>Compact sport shoe for running, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat </p>
+<p></p>
 
 
 <dl class="row">
@@ -87,32 +82,31 @@ consequat </p>
   <dt class="col-sm-3">Availabilty</dt>
   <dd class="col-sm-9">
   	@if ($product->piece >= 1)
-  		in Stock
+  		<img src="{{ asset('customer\images\instock.png') }}" alt="" height="17">
+  		In Stock
   	@else
+  		<img src="{{ asset('customer\images\soldout.png') }}" alt="" height="17">
   		Not Available
   	@endif
   </dd>
 </dl>
 
+{{-- form starts here --}}
 <form method="post">
 	{{ csrf_field() }}
 	<input type="hidden" name="product_id" value="{{Crypt::encryptString($product->id)}}">
-
 	<div class="form-row  mt-4">
 		
 		<!-- included the button blade -->
 		@include('customer._partial.product_add_minus_button')
-
 		<div class="form-group col-md">
 			<!-- included the button blade -->
 			@include('customer._partial.product_add_button')
 
 		</div> 
-		<!-- col.// -->
-
-
 	</div> <!-- row.// -->
 </form>
+{{-- form ends here --}}
 
 </article> <!-- product-info-aside .// -->
 		</main> <!-- col.// -->
@@ -133,54 +127,43 @@ consequat </p>
 	<div class="col-md-8">
 		<h5 class="title-description">Description</h5>
 		{!! htmlspecialchars_decode($product->specification) !!}
-	</div> <!-- col.// -->
+	</div> 
+
+	@if ($similar_products->count() > 0)
+		<aside class="col-md-4">
+			<div class="box">
+
+			    <h5 class="title-description">Similar Products</h5>
+			    
+
+			    @foreach ($similar_products as $similar_product)
+			    	<article class="media mb-3">
+
+			    	  <a href="#">
+			    	  	<img class="img-sm mr-3" src="{{Storage::url($similar_product->product_image)}}">
+			    	  </a>
+
+			    	  <div class="media-body">
+			    	    <h6 class="mt-0">
+			    	    	<a href="#">
+			    	    		{{$similar_product->product_name}}
+			    	    	</a>
+			    	    </h6>
+
+
+			    	    {{-- <p class="mb-2"> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin </p> --}}
+
+			    	  </div>
+
+			    	</article>
+			    @endforeach
+			    
+			</div> 
+		</aside> 
+	@endif
 	
-	<aside class="col-md-4">
-
-		<div class="box">
-{{-- 		
-		<h5 class="title-description">Files</h5>
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</p> --}}
-
-    <h5 class="title-description">Similar Products</h5>
-      
-
-    <article class="media mb-3">
-      <a href="#"><img class="img-sm mr-3" src="images/posts/3.jpg"></a>
-      <div class="media-body">
-        <h6 class="mt-0"><a href="#">How to use this item</a></h6>
-        <p class="mb-2"> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin </p>
-      </div>
-    </article>
-
-    <article class="media mb-3">
-      <a href="#"><img class="img-sm mr-3" src="images/posts/2.jpg"></a>
-      <div class="media-body">
-        <h6 class="mt-0"><a href="#">New tips and tricks</a></h6>
-        <p class="mb-2"> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin </p>
-      </div>
-    </article>
-
-    <article class="media mb-3">
-      <a href="#"><img class="img-sm mr-3" src="images/posts/1.jpg"></a>
-      <div class="media-body">
-        <h6 class="mt-0"><a href="#">New tips and tricks</a></h6>
-        <p class="mb-2"> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin </p>
-      </div>
-    </article>
-
-
-		
-	</div> <!-- box.// -->
-	</aside> <!-- col.// -->
-</div> <!-- row.// -->
+	
+</div> 
 
 </div> <!-- container .//  -->
 </section>

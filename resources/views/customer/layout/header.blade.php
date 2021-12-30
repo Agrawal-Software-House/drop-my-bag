@@ -1,8 +1,8 @@
-<section style="background-color: red; color: white; padding: 10px;">
+{{-- <section style="background-color: red; color: white; padding: 10px;">
 	<marquee width="70%" direction="left" style="font-size: 20px; font-weight: bold !important;">
 	This site is under constrution
 	</marquee>
-</section>
+</section> --}}
 <section class="header-main border-bottom" style="background-color: #F29001 !important; color: black !important;">
 	<div class="container">
 		<div class="row align-items-center">

@@ -42,8 +42,18 @@ class HomeController extends Controller
         )->whereHas('category',function ($query) use ($category_slug) {
                             $query->where('slug', $category_slug);
                         })->first();
+
+        $similar_products = product::where([
+            'category_id' => $product->category_id,
+            'sub_category_id' => $product->sub_category_id,
+
+        ])
+        ->where('id', '!=', $product->id)
+        ->take(5)->get();
+
         if ($product) {
-            return view('customer.singleProduct',compact('product'));
+            return view('customer.singleProduct',compact('product','similar_products'));
         }
+        abort(404);
     }
 }
