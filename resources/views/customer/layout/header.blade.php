@@ -3,12 +3,12 @@
 	This site is under constrution
 	</marquee>
 </section> --}}
-<section class="header-main border-bottom" style="background-color: #F29001 !important; color: black !important;">
+<section class="header-main border-bottom">
 	<div class="container">
 		<div class="row align-items-center">
 			<div class="col-xl-2 col-lg-3 col-md-12">
 				<a href="/" class="brand-wrap">
-					<img class="logo" src="/logo/dmbF5.png" style="max-height: 150px; height: 70px !important;">
+					<img class="logo" src="/logo/dmbF5.png">
 				</a> 
 			</div>
 			<div class="col-xl-6 col-lg-5 col-md-6">
@@ -34,7 +34,7 @@
 					
 					@if (!Auth::guard('customer')->check())
 						<div class="widget-header mr-3">
-							<a href="{{ url('/customer/login') }}" class="widget-view">
+							<a href="{{ route('customer.login') }}" class="widget-view">
 								<div class="icon-area">
 									<i class="fas fa-sign-in-alt"></i>
 								</div>
@@ -44,7 +44,7 @@
 
 
 						<div class="widget-header mr-3">
-							<a href="{{ url('/customer/register') }}" class="widget-view">
+							<a href="{{ route('customer.register') }}" class="widget-view">
 								<div class="icon-area">
 									<i class="fas fa-user-plus"></i>
 								</div>
@@ -66,7 +66,7 @@
 
 
 					<div class="widget-header mr-3">
-						<a href="#" class="widget-view">
+						<a href="{{ route('customer.orders.index') }}" class="widget-view">
 							<div class="icon-area">
 								<i class="fa fa-store"></i>
 							</div>

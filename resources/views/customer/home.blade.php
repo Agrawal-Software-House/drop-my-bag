@@ -34,14 +34,14 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="/customer/images/banners/slide1.jpg" alt="First slide"> 
+      <img src="{{ asset('customer\images\banners\veg1.png') }}" alt="First slide"> 
     </div>
-    <div class="carousel-item">
+    {{-- <div class="carousel-item">
       <img src="/customer/images/banners/slide2.jpg" alt="Second slide">
     </div>
     <div class="carousel-item">
       <img src="/customer/images/banners/slide3.jpg" alt="Third slide">
-    </div>
+    </div> --}}
   </div>
   <a class="carousel-control-prev" href="#carousel1_indicator" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -173,113 +173,72 @@
 <!-- =============== SECTION DEAL // END =============== -->
 
 @foreach ($categories as $category)
-	<!-- =============== SECTION 1 =============== -->
-	<section class="padding-bottom">
-		<header class="section-heading heading-line">
-			<h4 class="title-section text-uppercase">{{$category->name}}</h4>
-		</header>
-
-		<div class="card card-home-category">
-			<div class="row no-gutters">
-				{{-- <div class="col-md-3">
-					<div class="home-category-banner bg-light-orange">
-						<h5 class="title">Best trending clothes only for summer</h5>
-						<p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-						<a href="#" class="btn btn-outline-primary rounded-pill">Source now</a>
-						<img src="{{Storage::url($category->image)}}" class="img-bg">
-					</div>
-				</div>  --}}
-				<!-- col.// -->
-				
-				<div class="col-md-12">
-					<ul class="row no-gutters bordered-cols">
-						@foreach ($category->product as $product)
-							<li class="col-6 col-lg-3 col-md-4">
-								<a href="{{ route('customer.productPage',[$category->slug,$product->slug,Crypt::encryptString($product->id)]) }}" class="item"> 
-									<div class="card-body">
-										<h6 class="title">{{$product->product_name}}</h6>
-										<img class="img-sm float-right" src="{{Storage::url($product->product_image)}}"> 
-										<p>
-											<strong>Rs {{$product->selling_price}}</strong> 
-											<strike class="text-muted">Rs {{$product->mrp_price}}</strike> 
-										</p>
-									</div>
-								</a>
-							</li>
-						@endforeach
-						
-					</ul>
-				</div> 
-				<!-- col.// -->
-			</div> 
-			<!-- row.// -->
-		</div> <!-- card.// -->
-	</section>
-	<!-- =============== SECTION 1 END =============== -->
-@endforeach
-
-
-<!-- =============== SECTION REQUEST =============== -->
-
+<!-- =============== SECTION 1 =============== -->
 <section class="padding-bottom">
+	<header class="section-heading heading-line">
+		<h4 class="title-section text-uppercase">{{$category->name}}</h4>
+	</header>
 
-<header class="section-heading heading-line">
-	<h4 class="title-section text-uppercase">Request for Quotation</h4>
-</header>
+	<div class="card card-home-category">
+		<div class="row no-gutters">
+			<div class="col-md-3">
+				<div class="home-category-banner bg-light-orange">
+					<a href="{{ route('customer.category', $category->slug) }}" class="btn btn-outline-primary rounded-pill">View All</a>
+					<img src="{{Storage::url($category->image)}}" class="img-bg">
+				</div>
+			</div> 
+			<!-- col.// -->
+			
+			<div class="col-md-9">
+				<ul class="row no-gutters bordered-cols">
+					@foreach ($category->product as $product)
+						<li class="col-6 col-lg-3 col-md-4">
+							<a href="{{ route('customer.productPage',[$category->slug,$product->slug,Crypt::encryptString($product->id)]) }}" class="item"> 
+								<div class="card-body">
+									<h6 class="title">{{$product->product_name}}</h6>
+									<img class="img-sm float-right" src="{{Storage::url($product->product_image)}}"> 
 
-<div class="row">
-	<div class="col-md-8">
-<div class="card-banner banner-quote overlay-gradient" style="background-image: url('images/banners/banner9.jpg');">
-  <div class="card-img-overlay white">
-    <h3 class="card-title">An easy way to send request to suppliers</h3>
-    <p class="card-text" style="max-width: 400px">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt.</p>
-    <a href="" class="btn btn-primary rounded-pill">Learn more</a>
-  </div>
-</div>
-	</div> <!-- col // -->
-	<div class="col-md-4">
+									<p class="m-0 p-0">
+										<strong>
+											Rs {{$product->selling_price}}
+										</strong> 
+										<strike>
+											Rs {{$product->selling_price}}
+										</strike>
 
-<div class="card card-body">
-	<h4 class="title py-3">One Request, Multiple Quotes</h4>
-	<form>
-		<div class="form-group">
-			<input class="form-control" name="" placeholder="What are you looking for?" type="text">
-		</div>
-		<div class="form-group">
-			<div class="input-group">
-				<input class="form-control" placeholder="Quantity" name="" type="text">
-				
-				<select class="custom-select form-control">
-					<option>Pieces</option>
-					<option>Litres</option>
-					<option>Tons</option>
-					<option>Gramms</option>
-				</select>
-			</div>
-		</div>
-		<div class="form-group text-muted">
-			<p>Select template type:</p>
-			<label class="form-check form-check-inline">
-			  <input class="form-check-input" type="checkbox" value="option1">
-			   <span class="form-check-label">Request price</span>
-			</label>
-			<label class="form-check form-check-inline">
-			  <input class="form-check-input" type="checkbox" value="option2">
-			  <dspaniv class="form-check-label">Request a sample</span>
-			</label>
-		</div>
-		<div class="form-group">
-			<button class="btn btn-warning">Request for quote</button>
-		</div>
-	</form>
-</div>
+										<div class="rating-wrap">
+											<ul class="rating-stars">
+												<li style="width:80%" class="stars-active"> 
+													<i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+													<i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+													<i class="fa fa-star"></i> 
+												</li>
+												<li>
+													<i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+													<i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+													<i class="fa fa-star"></i> 
+												</li>
+											</ul>
+										</div>
 
-	</div> <!-- col // -->
-</div> <!-- row // -->
+										<strike class="text-muted">
+											Rs {{$product->mrp_price}}
+										</strike> 
+									</p>
+								</div>
+							</a>
+						</li>
+					@endforeach
+					
+				</ul>
+			</div> 
+			<!-- col.// -->
+		</div> 
+		<!-- row.// -->
+	</div> <!-- card.// -->
 </section>
-
-<!-- =============== SECTION REQUEST .//END =============== -->
+<!-- =============== SECTION 1 END =============== -->
+@endforeach
 
 
 <!-- =============== SECTION ITEMS =============== -->

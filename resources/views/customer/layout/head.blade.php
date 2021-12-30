@@ -34,36 +34,56 @@
 <link rel="stylesheet" href="/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet" href="/admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
-	#google_translate_element2 {display:none!important;}
+    body
+    {
+      font-family: 'Poppins', sans-serif !important;
+    }
+  	#google_translate_element2 {display:none!important;}
 
-        .select-language {
-          position: fixed;
-          left: 0px;
-          top: 30px;
-          z-index: 996;
-          background: #1977cc;
-          width: 40px;
-          height: 40px;
-          border-radius: 4px;
-          transition: all 0.4s;
-        }
+    .select-language {
+      position: fixed;
+      left: 0px;
+      top: 30px;
+      z-index: 996;
+      background: #1977cc;
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+      transition: all 0.4s;
+    }
 
-        .select-language i {
-          font-size: 28px;
-          color: #fff;
-          line-height: 0;
-        }
+    .select-language i {
+      font-size: 28px;
+      color: #fff;
+      line-height: 0;
+    }
 
-        .select-language:hover {
-          background: #298ce5;
-          color: #fff;
-        }
+    .select-language:hover {
+      background: #298ce5;
+      color: #fff;
+    }
 
-        .widget-header i, .widget-header .text
-        {
-          color: white !important;
-        }
+    .header-main
+    {
+      background-color: #E8F1F3 !important; color: black !important;
+    }
+
+    .widget-header i, .widget-header .text
+    {
+      color: black !important;
+    }
+
+    .logo
+    {
+      max-height: 150px; 
+      height: 70px !important;
+    }
 </style>
 
 

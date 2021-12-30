@@ -71,7 +71,7 @@ Route::group(['namespace' => 'customer'], function () {
 
   Route::get('/customer/home','ProfileController@home');
   Route::post('/customer/setting/update/{id}','ProfileController@updateUserInfo')->name('single_user.update');
-  Route::get('/customer/setting','ProfileController@showSetting');
+  Route::get('/customer/setting','ProfileController@showSetting')->name('customer.setting');
   
   Route::resource('/customer/orders','CustomerOrderController',[
     'as' => 'customer',
@@ -157,11 +157,11 @@ Route::group(['prefix' => 'seller'], function () {
 });
 
 Route::group(['prefix' => 'customer'], function () {
-  Route::get('/login', 'CustomerAuth\LoginController@showLoginForm')->name('login');
+  Route::get('/login', 'CustomerAuth\LoginController@showLoginForm')->name('customer.login');
   Route::post('/login', 'CustomerAuth\LoginController@login');
   Route::post('/logout', 'CustomerAuth\LoginController@logout')->name('customer.logout');
 
-  Route::get('/register', 'CustomerAuth\RegisterController@showRegistrationForm')->name('register');
+  Route::get('/register', 'CustomerAuth\RegisterController@showRegistrationForm')->name('customer.register');
   Route::post('/register', 'CustomerAuth\RegisterController@register');
 
   Route::post('/password/email', 'CustomerAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');

@@ -3,21 +3,19 @@
 	<div class="container">
 		<section class="footer-top padding-y-lg text-white">
 			<div class="row">
+
 				<aside class="col-md col-6">
-					<h6 class="title">Brands</h6>
-					<ul class="list-unstyled">
-						<li> <a href="#">Adidas</a></li>
-						<li> <a href="#">Puma</a></li>
-						<li> <a href="#">Reebok</a></li>
-						<li> <a href="#">Nike</a></li>
-					</ul>
+					<a href="/" class="brand-wrap">
+						<img class="logo" src="/logo/dmbF5.png" style="max-height: 150px; height: 70px !important;">
+					</a> 
+					<p class="mt-2">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
 				</aside>
+
 				<aside class="col-md col-6">
 					<h6 class="title">Company</h6>
 					<ul class="list-unstyled">
 						<li> <a href="#">About us</a></li>
 						<li> <a href="#">Career</a></li>
-						<li> <a href="#">Find a store</a></li>
 						<li> <a href="#">Rules and terms</a></li>
 						<li> <a href="#">Sitemap</a></li>
 					</ul>
@@ -29,16 +27,15 @@
 						<li> <a href="#">Money refund</a></li>
 						<li> <a href="#">Order status</a></li>
 						<li> <a href="#">Shipping info</a></li>
-						<li> <a href="#">Open dispute</a></li>
 					</ul>
 				</aside>
 				<aside class="col-md col-6">
 					<h6 class="title">Account</h6>
 					<ul class="list-unstyled">
-						<li> <a href="#"> User Login </a></li>
-						<li> <a href="#"> User register </a></li>
-						<li> <a href="#"> Account Setting </a></li>
-						<li> <a href="#"> My Orders </a></li>
+						<li> <a href="{{ route('customer.login') }}"> User Login </a></li>
+						<li> <a href="{{ route('customer.register') }}"> User register </a></li>
+						<li> <a href="{{ route('customer.setting') }}"> Account Setting </a></li>
+						<li> <a href="{{ route('customer.orders.index') }}"> My Orders </a></li>
 					</ul>
 				</aside>
 				<aside class="col-md">
