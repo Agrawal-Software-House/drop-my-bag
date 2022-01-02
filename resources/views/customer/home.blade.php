@@ -34,7 +34,7 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="{{ asset('customer\images\banners\veg1.png') }}" alt="First slide"> 
+      <img src="{{ asset('customer\images\banners\veg2.jpg') }}" alt="First slide"> 
     </div>
     {{-- <div class="carousel-item">
       <img src="/customer/images/banners/slide2.jpg" alt="Second slide">
@@ -57,12 +57,12 @@
 	</div> <!-- col.// -->
 	<div class="col-md d-none d-lg-block flex-grow-1">
 		<aside class="special-home-right">
-			<h6 class="bg-blue text-center text-white mb-0 p-2">Popular category</h6>
+			<h6 class="bg-site-color text-center text-white mb-0 p-2">Popular category</h6>
 			
 			<div class="card-banner border-bottom">
 			  <div class="py-3" style="width:80%">
 			    <h6 class="card-title">Men clothing</h6>
-			    <a href="#" class="btn btn-secondary btn-sm"> Source now </a>
+			    <a href="#" class="btn btn-secondary btn-site-color btn-sm"> Source now </a>
 			  </div> 
 			  <img src="/customer/images/items/1.jpg" height="80" class="img-bg">
 			</div>
@@ -70,7 +70,7 @@
 			<div class="card-banner border-bottom">
 			  <div class="py-3" style="width:80%">
 			    <h6 class="card-title">Winter clothing </h6>
-			    <a href="#" class="btn btn-secondary btn-sm"> Source now </a>
+			    <a href="#" class="btn btn-secondary btn-site-color btn-sm"> Source now </a>
 			  </div> 
 			  <img src="/customer/images/items/2.jpg" height="80" class="img-bg">
 			</div>
@@ -78,7 +78,7 @@
 			<div class="card-banner border-bottom">
 			  <div class="py-3" style="width:80%">
 			    <h6 class="card-title">Home inventory</h6>
-			    <a href="#" class="btn btn-secondary btn-sm"> Source now </a>
+			    <a href="#" class="btn btn-secondary btn-site-color btn-sm"> Source now </a>
 			  </div> 
 			  <img src="/customer/images/items/6.jpg" height="80" class="img-bg">
 			</div>
@@ -94,83 +94,6 @@
 <!-- ========================= SECTION MAIN END// ========================= -->
 
 
-
-<!-- =============== SECTION DEAL =============== -->
-<section class="padding-bottom">
- <div class="card card-deal">
-     <div class="col-heading content-body">
-      <header class="section-heading">
-       <h3 class="section-title">Deals and offers</h3>
-       <p>Hygiene equipments</p>
-     </header><!-- sect-heading -->
-     <div class="timer">
-       <div> <span class="num">04</span> <small>Days</small></div>
-       <div> <span class="num">12</span> <small>Hours</small></div>
-       <div> <span class="num">58</span> <small>Min</small></div>
-       <div> <span class="num">02</span> <small>Sec</small></div>
-     </div>
-   </div> <!-- col.// -->
-   <div class="row no-gutters items-wrap">
-    <div class="col-md col-6">
-     <figure class="card-product-grid card-sm">
-      <a href="#" class="img-wrap"> 
-       <img src="/customer/images/items/3.jpg"> 
-      </a>
-      <div class="text-wrap p-3">
-       	<a href="#" class="title">Summer clothes</a>
-       	<span class="badge badge-danger"> -20% </span>
-      </div>
-   </figure>
- </div> <!-- col.// -->
- <div class="col-md col-6">
-   <figure class="card-product-grid card-sm">
-    <a href="#" class="img-wrap"> 
-     <img src="/customer/images/items/4.jpg"> 
-   </a>
-   <div class="text-wrap p-3">
-     <a href="#" class="title">Some category</a>
-     <span class="badge badge-danger"> -5% </span>
-   </div>
- </figure>
-</div> <!-- col.// -->
-<div class="col-md col-6">
- <figure class="card-product-grid card-sm">
-  <a href="#" class="img-wrap"> 
-   <img src="/customer/images/items/5.jpg"> 
- </a>
- <div class="text-wrap p-3">
-   <a href="#" class="title">Another category</a>
-   <span class="badge badge-danger"> -20% </span>
- </div>
-</figure>
-</div> <!-- col.// -->
-<div class="col-md col-6">
- <figure class="card-product-grid card-sm">
-  <a href="#" class="img-wrap"> 
-   <img src="/customer/images/items/6.jpg"> 
- </a>
- <div class="text-wrap p-3">
-   <a href="#" class="title">Home apparel</a>
-   <span class="badge badge-danger"> -15% </span>
- </div>
-</figure>
-</div> <!-- col.// -->
-<div class="col-md col-6">
- <figure class="card-product-grid card-sm">
-  <a href="#" class="img-wrap"> 
-   <img src="/customer/images/items/7.jpg"> 
- </a>
- <div class="text-wrap p-3">
-   <a href="#" class="title text-truncate">Smart watches</a>
-   <span class="badge badge-danger"> -10% </span>
- </div>
-</figure>
-</div> <!-- col.// -->
-</div>
-</div>
-
-</section>
-<!-- =============== SECTION DEAL // END =============== -->
 
 @foreach ($categories as $category)
 <!-- =============== SECTION 1 =============== -->
@@ -241,133 +164,10 @@
 @endforeach
 
 
-<!-- =============== SECTION ITEMS =============== -->
-<section  class="padding-bottom-sm">
-
-<header class="section-heading heading-line">
-	<h4 class="title-section text-uppercase">Recommended items</h4>
-</header>
-
-<div class="row row-sm">
-	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
-		<div class="card card-sm card-product-grid">
-			<a href="#" class="img-wrap"> <img src="/customer/images/items/1.jpg"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Just another product name</a>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
-		<div class="card card-sm card-product-grid">
-			<a href="#" class="img-wrap"> <img src="/customer/images/items/2.jpg"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Some item name here</a>
-				<div class="price mt-1">$280.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
-		<div class="card card-sm card-product-grid">
-			<a href="#" class="img-wrap"> <img src="/customer/images/items/3.jpg"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Great product name here</a>
-				<div class="price mt-1">$56.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
-		<div class="card card-sm card-product-grid">
-			<a href="#" class="img-wrap"> <img src="/customer/images/items/4.jpg"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Just another product name</a>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
-		<div class="card card-sm card-product-grid">
-			<a href="#" class="img-wrap"> <img src="/customer/images/items/5.jpg"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Just another product name</a>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
-		<div class="card card-sm card-product-grid">
-			<a href="#" class="img-wrap"> <img src="/customer/images/items/6.jpg"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Some item name here</a>
-				<div class="price mt-1">$280.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
-		<div class="card card-sm card-product-grid">
-			<a href="#" class="img-wrap"> <img src="/customer/images/items/7.jpg"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Great product name here</a>
-				<div class="price mt-1">$56.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
-		<div class="card card-sm card-product-grid">
-			<a href="#" class="img-wrap"> <img src="/customer/images/items/9.jpg"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Just another product name</a>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
-		<div class="card card-sm card-product-grid">
-			<a href="#" class="img-wrap"> <img src="/customer/images/items/4.jpg"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Just another product name</a>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
-		<div class="card card-sm card-product-grid">
-			<a href="#" class="img-wrap"> <img src="/customer/images/items/5.jpg"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Just another product name</a>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
-		<div class="card card-sm card-product-grid">
-			<a href="#" class="img-wrap"> <img src="/customer/images/items/6.jpg"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Some item name here</a>
-				<div class="price mt-1">$280.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
-		<div class="card card-sm card-product-grid">
-			<a href="#" class="img-wrap"> <img src="/customer/images/items/7.jpg"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Great product name here</a>
-				<div class="price mt-1">$56.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-</div> <!-- row.// -->
-</section>
-<!-- =============== SECTION ITEMS .//END =============== -->
-
-
 <!-- =============== SECTION SERVICES =============== -->
 <section  class="padding-bottom">
 
-<article class="my-4">
-	<img src="/customer/images/banners/ad-sm.png" class="w-100">
-</article>
+
 </div>  
 <!-- container end.// -->
 @endsection

@@ -71,18 +71,24 @@
 
     .header-main
     {
-      background-color: #E8F1F3 !important; color: black !important;
+      background-color: #36A839 !important; color: black !important;
+    }
+
+    .bg-site-color, .btn-site-color
+    {
+      background-color: #36A839 !important; 
+      border: none !important;
     }
 
     .widget-header i, .widget-header .text
     {
-      color: black !important;
+      color: white !important;
     }
 
     .logo
     {
-      max-height: 150px; 
-      height: 70px !important;
+      max-height: 150px !important; 
+      height: 80px !important;
     }
 </style>
 

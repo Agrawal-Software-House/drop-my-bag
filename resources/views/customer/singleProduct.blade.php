@@ -22,7 +22,7 @@
 
 <!-- ============================ ITEM DETAIL ======================== -->
 	<div class="row">
-		<aside class="col-md-6">
+		<aside class="col-md-3">
 			<div class="card">
 			<article class="gallery-wrap"> 
 				<div class="img-big-wrap">
