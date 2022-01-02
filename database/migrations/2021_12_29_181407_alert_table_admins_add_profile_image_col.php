@@ -14,7 +14,7 @@ class AlertTableAdminsAddProfileImageCol extends Migration
     public function up()
     {
         Schema::table('admins', function (Blueprint $table) {
-            $table->string('profile_image');
+            $table->string('profile_image')->nullable();
         });
     }
 
