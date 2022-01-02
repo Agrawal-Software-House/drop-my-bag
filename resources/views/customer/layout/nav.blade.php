@@ -13,7 +13,7 @@
 					<nav class="row">
 						@foreach ($category->subCategoryWithActiveProduct as $subCategory)
 							<div class="col-6">
-								<a href="">{{$subCategory->name}}</a>
+								<a href="{{ route('customer.category', [$category->slug, 'sub_category' => $subCategory->id]) }}">{{$subCategory->name}}</a>
 							</div>
 						@endforeach
 					</nav> <!--  row end .// -->

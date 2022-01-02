@@ -105,21 +105,22 @@
 <header class="mb-3">
 		<div class="form-inline">
 			<strong class="mr-md-auto">{{$products->count()}} Items found </strong>
-			<select class="mr-2 form-control">
+			{{-- <select class="mr-2 form-control">
 				<option>Latest items</option>
 				<option>Trending</option>
 				<option>Most Popular</option>
 				<option>Cheapest</option>
-			</select>
+			</select> --}}
 		</div>
-</header><!-- sect-heading -->
+</header>
+<!-- sect-heading -->
 
 
 
 <div class="row">
 	@foreach ($products as $product)
 		<div class="col-md-3">
-			<figure class="card card-product-grid">
+			<figure class="card card-product-grid" style="height: 100% !important;">
 				<div class="img-wrap"> 
 					<span class="badge badge-danger"> 
 						@if ($product->piece >= 1)
@@ -164,8 +165,6 @@
 							</span> 
 							<small class="text-muted">/per item</small>
 						</div> <!-- price-wrap.// -->
-						
-						{{-- <p class="mb-2"> 2 Pieces  <small class="text-muted">(Min Order)</small></p> --}}
 						
 						<p class="text-muted ">{{$product->brand_name}}</p>
 

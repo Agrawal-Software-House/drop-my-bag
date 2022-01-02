@@ -39,6 +39,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
     body
     {
@@ -71,13 +74,14 @@
 
     .header-main
     {
-      background-color: #36A839 !important; color: black !important;
+      background-color: #A6CD3C !important; color: black !important;
     }
 
     .bg-site-color, .btn-site-color
     {
-      background-color: #36A839 !important; 
+      background-color: #A6CD3C !important; 
       border: none !important;
+      color: white !important;
     }
 
     .widget-header i, .widget-header .text
@@ -89,6 +93,41 @@
     {
       max-height: 150px !important; 
       height: 80px !important;
+    }
+
+    .section-footer
+    {
+      /*border-top: 2px solid #A6CD3C !important;*/
+      background-color: #F9F9F9 !important;
+    }
+
+    .section-footer h6
+    {
+      color: #A6CD3C !important;
+    }
+
+    .footer-bottom 
+    {
+      border-color: #A6CD3C !important;
+    }
+
+    .btn-primary
+    {
+      background-color: #A6CD3C !important;
+      border-color: #A6CD3C !important;
+      color: white !important;
+    }
+
+    .btn-outline-primary
+    {
+      border-color: #A6CD3C !important;
+      color: #A6CD3C !important;
+    }
+
+    .btn-outline-primary:hover
+    {
+      background-color: #A6CD3C !important;
+      color: white !important;
     }
 </style>
 

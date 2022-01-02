@@ -23,68 +23,58 @@
 			</ul>
 		</nav>
 	</aside> <!-- col.// -->
+
 	<div class="col-md-9 col-xl-7 col-lg-7">
 
-<!-- ================== COMPONENT SLIDER  BOOTSTRAP  ==================  -->
-<div id="carousel1_indicator" class="slider-home-banner carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carousel1_indicator" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel1_indicator" data-slide-to="1"></li>
-    <li data-target="#carousel1_indicator" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="{{ asset('customer\images\banners\veg2.jpg') }}" alt="First slide"> 
-    </div>
-    {{-- <div class="carousel-item">
-      <img src="/customer/images/banners/slide2.jpg" alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img src="/customer/images/banners/slide3.jpg" alt="Third slide">
-    </div> --}}
-  </div>
-  <a class="carousel-control-prev" href="#carousel1_indicator" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carousel1_indicator" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div> 
-<!-- ==================  COMPONENT SLIDER BOOTSTRAP end.// ==================  .// -->	
+		<!-- ================== COMPONENT SLIDER  BOOTSTRAP  ==================  -->
+		<div id="carousel1_indicator" class="slider-home-banner carousel slide" data-ride="carousel">
+		  <ol class="carousel-indicators">
+		    <li data-target="#carousel1_indicator" data-slide-to="0" class="active"></li>
+		    <li data-target="#carousel1_indicator" data-slide-to="1"></li>
+		    <li data-target="#carousel1_indicator" data-slide-to="2"></li>
+		  </ol>
+		  <div class="carousel-inner">
+		    <div class="carousel-item active">
+		      <img src="{{ asset('customer\images\banners\veg2.jpg') }}" alt="First slide"> 
+		    </div>
+		    {{-- <div class="carousel-item">
+		      <img src="/customer/images/banners/slide2.jpg" alt="Second slide">
+		    </div>
+		    <div class="carousel-item">
+		      <img src="/customer/images/banners/slide3.jpg" alt="Third slide">
+		    </div> --}}
+		  </div>
+		  <a class="carousel-control-prev" href="#carousel1_indicator" role="button" data-slide="prev">
+		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		    <span class="sr-only">Previous</span>
+		  </a>
+		  <a class="carousel-control-next" href="#carousel1_indicator" role="button" data-slide="next">
+		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		    <span class="sr-only">Next</span>
+		  </a>
+		</div> 
+		<!-- ==================  COMPONENT SLIDER BOOTSTRAP end.// ==================  .// -->	
 
 	</div> <!-- col.// -->
+
 	<div class="col-md d-none d-lg-block flex-grow-1">
 		<aside class="special-home-right">
 			<h6 class="bg-site-color text-center text-white mb-0 p-2">Popular category</h6>
-			
-			<div class="card-banner border-bottom">
-			  <div class="py-3" style="width:80%">
-			    <h6 class="card-title">Men clothing</h6>
-			    <a href="#" class="btn btn-secondary btn-site-color btn-sm"> Source now </a>
-			  </div> 
-			  <img src="/customer/images/items/1.jpg" height="80" class="img-bg">
-			</div>
 
-			<div class="card-banner border-bottom">
-			  <div class="py-3" style="width:80%">
-			    <h6 class="card-title">Winter clothing </h6>
-			    <a href="#" class="btn btn-secondary btn-site-color btn-sm"> Source now </a>
-			  </div> 
-			  <img src="/customer/images/items/2.jpg" height="80" class="img-bg">
-			</div>
 
+			@foreach ($categories as $category)
 			<div class="card-banner border-bottom">
 			  <div class="py-3" style="width:80%">
-			    <h6 class="card-title">Home inventory</h6>
-			    <a href="#" class="btn btn-secondary btn-site-color btn-sm"> Source now </a>
+			    <h6 class="card-title">{{$category->name}}</h6>
+			    <a href="{{ route('customer.category',$category->slug) }}" class="btn btn-secondary btn-site-color btn-sm"> Source now </a>
 			  </div> 
-			  <img src="/customer/images/items/6.jpg" height="80" class="img-bg">
+			  <img src="{{Storage::url($category->image)}}" height="80" class="img-bg">
 			</div>
+			@endforeach
 
 		</aside>
-	</div> <!-- col.// -->
+	</div> 
+	<!-- col.// -->
 </div> <!-- row.// -->
 
 	</div> <!-- card-body.// -->
@@ -105,7 +95,7 @@
 	<div class="card card-home-category">
 		<div class="row no-gutters">
 			<div class="col-md-3">
-				<div class="home-category-banner bg-light-orange">
+				<div class="home-category-banner bg-light">
 					<a href="{{ route('customer.category', $category->slug) }}" class="btn btn-outline-primary rounded-pill">View All</a>
 					<img src="{{Storage::url($category->image)}}" class="img-bg">
 				</div>
@@ -144,9 +134,6 @@
 											</ul>
 										</div>
 
-										<strike class="text-muted">
-											Rs {{$product->mrp_price}}
-										</strike> 
 									</p>
 								</div>
 							</a>

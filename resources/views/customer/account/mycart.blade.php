@@ -25,7 +25,7 @@
 		</div> <!-- card.// -->
 
 		<div class="alert alert-success mt-3">
-			<p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Delivery within 1-2 weeks</p>
+			<p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Delivery within 4-6 Hours</p>
 		</div>
 
 	</main> <!-- col.// -->

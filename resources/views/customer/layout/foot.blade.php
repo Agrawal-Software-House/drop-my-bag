@@ -1,12 +1,12 @@
 <!-- ========================= FOOTER ========================= -->
-<footer class="section-footer bg-secondary">
+<footer class="section-footer">
 	<div class="container">
-		<section class="footer-top padding-y-lg text-white">
+		<section class="footer-top padding-y-lg">
 			<div class="row">
 
 				<aside class="col-md col-6">
 					<a href="/" class="brand-wrap">
-						<img class="logo" src="/logo/dmbF5.png" style="max-height: 150px; height: 70px !important;">
+						<img class="logo" src="/logo/logoblack.png" style="max-height: 150px; height: 70px !important;">
 					</a> 
 					<p class="mt-2">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
 				</aside>
@@ -52,9 +52,9 @@
 
 		<section class="footer-bottom text-center">
 		
-				<p class="text-white">Privacy Policy - Terms of Use - User Information Legal Enquiry Guide</p>
+				<p>Privacy Policy - Terms of Use - User Information Legal Enquiry Guide</p>
 				<p class="text-muted"> &copy 2021 DropMyBag, All rights reserved. <br>
-				 Design & Developed by <a  style="color: white;" href="https://agrawalsoftwarehouse.com/">Agrawal Software House</a>
+				 Design & Developed by <a href="https://agrawalsoftwarehouse.com/">Agrawal Software House</a>
 				</p>
 				<br>
 		</section>

@@ -12,7 +12,7 @@
 				</a> 
 			</div>
 			<div class="col-xl-6 col-lg-5 col-md-6">
-				<form action="#" class="search-header">
+				{{-- <form action="#" class="search-header">
 					<div class="input-group w-100">
 						<select class="custom-select border-right"  name="category_name">
 								<option value="">All type</option><option value="codex">Special</option>
@@ -27,8 +27,9 @@
 					      </button>
 					    </div>
 				    </div>
-				</form> <!-- search-wrap .end// -->
-			</div> <!-- col.// -->
+				</form> --}}
+			</div> 
+			<!-- col.// -->
 			<div class="col-xl-4 col-lg-4 col-md-6">
 				<div class="widgets-wrap float-md-right">
 					
