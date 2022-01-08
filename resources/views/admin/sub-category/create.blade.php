@@ -47,13 +47,18 @@
                   </div>
 
                   <div class="form-group">
+                    <label for="gst">Tax or Gst (In %)</label>
+                    <input type="text" class="form-control form-control-border" name="gst" id="gst" placeholder="Enter Gst">
+                    <span class="error text-danger" id="error_gst"></span>
+                  </div>
+
+                  <div class="form-group">
                     <label for="active">Active</label>
                     <input type="checkbox" id="active" name="active" data-bootstrap-switch value="1">
                   </div>
 
                   <button type="button" class="btn btn-success" onclick="
 
-                    $('#loader').show();
                     var data = new FormData(this.form);
                     $.ajax({
                       type: 'POST',
@@ -62,43 +67,25 @@
                       processData: false,
                       contentType: false,
                       dataType: 'json',
+
                       success: function(response){
-                        successToast('Added Successfull!!','Sub Category');
+                        successToast('Added Successfull!!');
                         window.location.replace('/admin/sub-category');
                       },
+                      
                       complete: function(response){
-                          $('#loader').hide();
-                        }
-                        ,
+                      
+                      },
                       error: function(xhr, status, data){
-                        if(xhr.responseJSON.errors.name)
-                        {
-                          $('#error_name').text(xhr.responseJSON.errors.name);
+                        var errors = xhr.responseJSON.errors;
+                        $('.error').text('');
+                        $('.text-danger').text('');
+                        for (const [key, value] of Object.entries(errors)) {
+                          $('#error_'+key).text(value);
                         }
-                        else
-                        {
-                          $('#error_name').text('');
-                        }
-
-                        if(xhr.responseJSON.errors.category)
-                        {
-                          $('#error_category').text(xhr.responseJSON.errors.category);
-                        }
-                        else
-                        {
-                          $('#error_category').text('');
-                        }
-
-                        if(!xhr.responseJSON.errors)
-                        {
-                          errorToast('Please Contact the support','Techincal issue');
-                        }
-                        else
-                        {
-
-                          errorToast('Please Fill all required fields!','Validation Error');
-                        }
-                        }
+                        
+                        !xhr.responseJSON.errors ? errorToast('Technical issue! Please contact your support','Add Product') : errorToast('Validation Error!','Add Product');
+                      }
                       
                     });
                     e.preventDefault();">Create</button>
