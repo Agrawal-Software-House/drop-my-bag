@@ -92,15 +92,18 @@ class SubCategoryController extends Controller
             'category' => 'required',
         ]);
 
-        $subCategory->update([
+
+        $update = $subCategory->update([
             'name' => $request->name,
             'slug' => str_slug($request->name),
             'category_id' => $request->category,
             'active' => $request->has('active'),
         ]);
 
+        $message = $update ? 'Sub Category updated successfully!' : 'Technical Issue!';
+        
         $data = array(
-            'success' => 'uploaded',
+            'message' => $message,
         );
         echo json_encode($data);
     }

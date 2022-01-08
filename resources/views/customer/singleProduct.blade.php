@@ -26,7 +26,7 @@
 			<div class="card">
 			<article class="gallery-wrap"> 
 				<div class="img-big-wrap">
-				  	<a href="#">
+				  	<a href="{{Storage::url($product->product_image)}}" target="_blank">
 				  		<img src="{{Storage::url($product->product_image)}}" class="img-fluid">
 				  	</a>
 				</div> <!-- slider-product.// -->
@@ -64,20 +64,16 @@
 				</div> <!-- rating-wrap.// -->
 
 				<div class="mb-3"> 
-					<var class="price h4">Rs {{number_format($product->selling_price)}}</var> 
-					<span class="text-muted">USD 562.65 incl. VAT</span> 
+					<var class="price h4">Rs {{number_format($product->selling_price)}}</var>
+
+					<span class="text-muted">Rs 562.65 incl. VAT</span> 
+
 				</div> <!-- price-detail-wrap .// -->
 
 
 				<dl class="row">
-				  <dt class="col-sm-3">Manufacturer</dt>
-				  <dd class="col-sm-9"><a href="#">{{$product->merchant->firm_name}}</a></dd>
-
-				  <dt class="col-sm-3">Guarantee</dt>
-				  <dd class="col-sm-9">2 year</dd>
-
 				  <dt class="col-sm-3">Delivery time</dt>
-				  <dd class="col-sm-9">3-4 days</dd>
+				  <dd class="col-sm-9">4-6 Hours</dd>
 
 				  <dt class="col-sm-3">Availabilty</dt>
 				  <dd class="col-sm-9">
@@ -179,9 +175,6 @@
 
 			    	    <small class="label-rating text-muted">132 reviews</small>
 			    	    <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 orders </small>
-
-
-			    	    {{-- <p class="mb-2"> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin </p> --}}
 
 			    	  </div>
 

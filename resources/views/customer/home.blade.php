@@ -95,9 +95,15 @@
 	<div class="card card-home-category">
 		<div class="row no-gutters">
 			<div class="col-md-3">
-				<div class="home-category-banner bg-light">
-					<a href="{{ route('customer.category', $category->slug) }}" class="btn btn-outline-primary rounded-pill">View All</a>
-					<img src="{{Storage::url($category->image)}}" class="img-bg">
+				<div class="bg-light row">
+					<div class="col-4 py-5">
+						<a href="{{ route('customer.category', $category->slug) }}" class="btn btn-outline-primary" style="border-radius: 13px;">View All</a>
+					</div>
+
+					<div class="col-8">
+						<img src="{{Storage::url($category->image)}}" class="img-fluid" style="height: 100%;">
+					</div>
+					
 				</div>
 			</div> 
 			<!-- col.// -->
@@ -105,7 +111,7 @@
 			<div class="col-md-9">
 				<ul class="row no-gutters bordered-cols">
 					@foreach ($category->product as $product)
-						<li class="col-6 col-lg-3 col-md-4">
+						<li class="col-lg-3 col-md-4">
 							<a href="{{ route('customer.productPage',[$category->slug,$product->slug,Crypt::encryptString($product->id)]) }}" class="item"> 
 								<div class="card-body">
 									<h6 class="title">{{$product->product_name}}</h6>

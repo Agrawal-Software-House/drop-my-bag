@@ -56,7 +56,7 @@
 
                   <div class="form-group">
                     {!! Form::label('active', 'Active') !!}
-                    <input type="checkbox" name="active" @if ($category->active == 1)
+                    <input type="checkbox" name="active" @if ($subCategory->active == 1)
                       checked 
                     @endif data-bootstrap-switch>
 
@@ -67,7 +67,6 @@
 
                   <button type="button" class="btn btn-success" onclick="
 
-                    $('#loader').show();
                     var data = new FormData(this.form);
                     $.ajax({
                       type: 'POST',
@@ -76,43 +75,26 @@
                       processData: false,
                       contentType: false,
                       dataType: 'json',
-                      success: function(response){
-                        successToast('Category updated successfully!', 'Category')
+                      success: function(data){
+                        successToast(data.message)
                         window.location.replace('/admin/sub-category');
                       },
+
                       complete: function(response){
-                          $('#loader').hide();
-                        }
-                        ,
-                      error: function(xhr, status, data){
-                        if(xhr.responseJSON.errors.name)
-                        {
-                          $('#error_name').text(xhr.responseJSON.errors.name);
-                        }
-                        else
-                        {
-                          $('#error_name').text('');
-                        }
 
-                        if(xhr.responseJSON.errors.category)
-                        {
-                          $('#error_category').text(xhr.responseJSON.errors.category);
+                      },
+                      
+                      error: function(xhr, status, data)
+                      {
+                        var errors = xhr.responseJSON.errors;
+                        $('.error').text('');
+                        $('.text-danger').text('');
+                        for (const [key, value] of Object.entries(errors)) {
+                          $('#error_'+key).text(value);
                         }
-                        else
-                        {
-                          $('#error_category').text('');
-                        }
-
-                        if(!xhr.responseJSON.errors)
-                        {
-                          errorToast('Please Contact Support!','Techincal issue!');
-                        }
-                        else
-                        {
-                          errorToast('Please fill all required fields','Validation Error');
-                          
-                        }
-                        }
+                        
+                        !xhr.responseJSON.errors ? errorToast('Technical issue!') : errorToast('Validation Error!');
+                      }
                       
                     });
                     e.preventDefault();">Update</button>

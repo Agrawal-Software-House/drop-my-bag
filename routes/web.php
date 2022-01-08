@@ -47,7 +47,7 @@ Route::group(['namespace' => 'admin'], function () {
     'as' => 'admin',
   ]);
   
-  Route::resource('/admin/product','product\ProductController',[
+  Route::resource('/admin/product','product\productController',[
     'as' => 'admin',
   ]);
   
