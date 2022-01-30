@@ -53,6 +53,13 @@
 					  <dt>Total price:</dt>
 					  <dd class="text-right">Rs <span id="total_price">0</span></dd>
 					</dl>
+
+					<dl class="dlist-align">
+					  <dt>Tax: </dt>
+					  <dd class="text-right">Rs <span id="total_tax">0</span></dd>
+					</dl>
+
+
 					<dl class="dlist-align">
 					  <dt>Discount:</dt>
 					  <dd class="text-right">Rs 0</dd>
@@ -111,9 +118,11 @@
 		function setTotal()
 		{
 			var total = $('#customercartdatatable-table').DataTable().ajax.json().extra.total_price;
-			console.log(total);
+			var total_tax = $('#customercartdatatable-table').DataTable().ajax.json().extra.total_tax;
+			var grand_total = $('#customercartdatatable-table').DataTable().ajax.json().extra.grand_total;
 			$("#total_price").html(total);
-			$("#grand_total").html(total);
+			$("#total_tax").html(total_tax);
+			$("#grand_total").html(grand_total);
 		}
 
 		function updateQuantity(cart_id, quantity)

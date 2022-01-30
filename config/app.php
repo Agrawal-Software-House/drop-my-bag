@@ -177,6 +177,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        ZerosDev\LaravelCaptcha\ServiceProvider::class,
 
     ],
 
@@ -234,6 +235,8 @@ return [
 
         'commanHelper' => App\Helpers\GeneralHelper::class,
         'AdminSidebarHelper' => App\Helpers\AdminSidebarHelper::class,
+
+        'Captcha' => ZerosDev\LaravelCaptcha\Facade::class,
 
 
     ],

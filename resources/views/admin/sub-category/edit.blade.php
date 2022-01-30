@@ -55,6 +55,12 @@
                   </div>
 
                   <div class="form-group">
+                    <label for="gst">Tax or Gst (In %)</label>
+                    <input type="text" class="form-control form-control-border" name="gst" id="gst" placeholder="Enter Gst" value="{{$subCategory->gst}}">
+                    <span class="error text-danger" id="error_gst"></span>
+                  </div>
+
+                  <div class="form-group">
                     {!! Form::label('active', 'Active') !!}
                     <input type="checkbox" name="active" @if ($subCategory->active == 1)
                       checked 

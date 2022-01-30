@@ -13,7 +13,9 @@ class AlterTableSubCategoryAddGstCol extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('sub_categories', function (Blueprint $table) {
+            $table->string('gst')->nullable();
+        });
     }
 
     /**
@@ -23,8 +25,6 @@ class AlterTableSubCategoryAddGstCol extends Migration
      */
     public function down()
     {
-        Schema::table('sub_categories', function (Blueprint $table) {
-            $table->string('gst')->nullable();
-        });
+        
     }
 }

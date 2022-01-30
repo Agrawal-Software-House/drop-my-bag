@@ -47,6 +47,7 @@ class SubCategoryController extends Controller
             'name' => $request->name,
             'slug' => str_slug($request->name),
             'category_id' => $request->category,
+            'gst' => $request->gst,
             'active' => $request->has('active'),
         ]);
 
@@ -97,6 +98,7 @@ class SubCategoryController extends Controller
             'name' => $request->name,
             'slug' => str_slug($request->name),
             'category_id' => $request->category,
+            'gst' => $request->gst,
             'active' => $request->has('active'),
         ]);
 

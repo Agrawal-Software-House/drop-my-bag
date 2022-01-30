@@ -83,6 +83,7 @@ class SubCategoryDataTable extends DataTable
             Column::make('name'),
             Column::make('category_name'),
             Column::make('slug'),
+            Column::make('gst')->title('GST(%)'),
             Column::make('created_at'),
             Column::make('updated_at'),
         ];

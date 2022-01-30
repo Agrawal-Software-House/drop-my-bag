@@ -98,14 +98,20 @@ class customerCartDatatable extends DataTable
 
             ->withQuery('extra', function() use ($query) {
                 $total = 0;
+                $tax = 0;
+
                 $carts = Auth::guard('customer')->user()->cart;
 
                 foreach ($carts as $cart) {
-                    $total = $total + ($cart->product->selling_price * $cart->quantity);                
+                    $total = $total + ($cart->product->selling_price * $cart->quantity);       
+                    
+                    $tax = $tax + (($cart->product->subCategory->gst * ($cart->product->selling_price * $cart->quantity))/100);
                 }
 
                 $data = array(  
                     'total_price' => $total,
+                    'total_tax' => $tax,
+                    'grand_total' => $total+$tax,
                 );
                 return $data;
             })

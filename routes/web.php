@@ -85,6 +85,8 @@ Route::group(['namespace' => 'customer'], function () {
     'as' => 'customer',
   ]);
 
+  Route::any('/customer/checkout','CustomerCheckoutController');
+
   Route::resource('/customer/my-cart','CustomerCartController',[
     'as' => 'customer',
   ]);

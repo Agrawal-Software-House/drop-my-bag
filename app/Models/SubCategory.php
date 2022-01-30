@@ -12,7 +12,7 @@ class SubCategory extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','category_id','active','slug'];
+    protected $fillable = ['name','category_id','active','slug','gst'];
 
     public function getCreatedAtAttribute($value)
     {

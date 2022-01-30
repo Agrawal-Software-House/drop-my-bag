@@ -26,7 +26,7 @@ class StoreSubCategoryRequest extends FormRequest
         return [
             'name' => 'required|unique:sub_categories',
             'category' => 'required',
-            'gst' => 'required',
+            'gst' => 'required|numeric|min:1|max:100',
         ];
     }
 }

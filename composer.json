@@ -16,7 +16,8 @@
         "laravel/ui": "^3.2",
         "laravelcollective/html": "^6.2",
         "yajra/laravel-datatables": "1.5",
-        "yajra/laravel-datatables-buttons": "^4.12"
+        "yajra/laravel-datatables-buttons": "^4.12",
+        "zerosdev/laravel-captcha": "dev-master"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
