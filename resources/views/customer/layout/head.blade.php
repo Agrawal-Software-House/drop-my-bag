@@ -129,6 +129,9 @@
       background-color: #A6CD3C !important;
       color: white !important;
     }
+    .error{
+      color:red !important;
+    }
 </style>
 
 

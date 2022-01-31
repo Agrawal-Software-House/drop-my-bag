@@ -19,7 +19,9 @@ class CreateSubCategoriesTable extends Migration
             $table->string('slug',70);
             $table->boolean('active')->default(0);
             $table->bigInteger('category_id')->unsigned();
+            $table->string('gst')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('category_id')
                   ->references('id')->on('categories')

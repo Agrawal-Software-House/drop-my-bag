@@ -17,9 +17,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // DB::unprepared(file_get_contents('database/import/state.sql'));
-        // $this->call(ProductStatusSeeder::class);
-    	// $this->call(AdminUserSeeder::class);
+        DB::unprepared(file_get_contents('database/import/state.sql'));
+        $this->call(ProductStatusSeeder::class);
+    	$this->call(AdminUserSeeder::class);
     	$this->call(paymentMethodSeeder::class);
     }
 }

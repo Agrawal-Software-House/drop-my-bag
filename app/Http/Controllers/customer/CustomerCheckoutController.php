@@ -9,6 +9,11 @@ use Captcha;
 
 class CustomerCheckoutController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('customer', ['except' => 'logout']);
+    }
+    
     /**
      * Handle the incoming request.
      *

@@ -18,7 +18,7 @@
 
 
 			<div class="card-body border-top" style="margin-top: 20px;">
-				<a onclick="refreshTable();" class="btn btn-primary float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
+				<a href="{{ route('customer.checkout') }}" class="btn btn-primary float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
 				<a href="{{ route('customer.home') }}" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
 			</div>	
 

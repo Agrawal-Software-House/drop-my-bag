@@ -26,6 +26,7 @@ class CreateCustomersTable extends Migration
             $table->boolean('terms_condition')->default(0);
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('state_id')
                   ->references('id')

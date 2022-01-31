@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlertTableAdminsAddProfileImageCol extends Migration
+class CreatePaymentMethodsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AlertTableAdminsAddProfileImageCol extends Migration
      */
     public function up()
     {
-        Schema::table('admins', function (Blueprint $table) {
-            $table->string('profile_image')->nullable();
+        Schema::create('payment_methods', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -25,6 +28,6 @@ class AlertTableAdminsAddProfileImageCol extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('payment_methods');
     }
 }

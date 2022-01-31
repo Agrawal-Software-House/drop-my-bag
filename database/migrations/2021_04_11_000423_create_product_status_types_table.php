@@ -16,6 +16,7 @@ class CreateProductStatusTypesTable extends Migration
         Schema::create('product_status_types', function (Blueprint $table) {
             $table->id();
             $table->text('name');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

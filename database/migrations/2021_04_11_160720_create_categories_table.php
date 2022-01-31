@@ -20,6 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->text('image');
             $table->boolean('active')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

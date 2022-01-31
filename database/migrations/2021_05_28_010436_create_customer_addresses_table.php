@@ -25,6 +25,7 @@ class CreateCustomerAddressesTable extends Migration
             $table->boolean('active')->default(0);
             $table->unSignedBigInteger('customer_id');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('customer_id')
                 ->references('id')

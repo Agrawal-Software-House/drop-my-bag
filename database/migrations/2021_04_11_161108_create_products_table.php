@@ -31,6 +31,7 @@ class CreateProductsTable extends Migration
             $table->unSignedBigInteger('merchant_id');
             $table->text('admin_note')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('category_id')
                 ->references('id')

@@ -17,6 +17,7 @@ class CreateStatesTable extends Migration
             $table->id();
             $table->string('name',70)->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
