@@ -49,29 +49,43 @@ class CustomerOrderController extends Controller
             //fetch the items in the cart
             $carts = Auth::guard('customer')->user()->cart;
 
+            //create a transaction
+            $transaction = customer_transaction::create([
+                'payment_method_id' => 1,
+            ]);
+
             foreach ($carts as $cart) {
-                // $total = $total + ($cart->product->selling_price * $cart->quantity);       
-                // $tax = $tax + (($cart->product->subCategory->gst * ($cart->product->selling_price * $cart->quantity))/100);
+                $total = $cart->product->selling_price * $cart->quantity;       
+                $tax = ($cart->product->subCategory->gst * ($cart->product->selling_price * $cart->quantity))/100;
+
+                $grand_total = $total + $tax;
 
                 // Create a new order
                 $customer_order = customer_order::create([
-                    'product_id' => $product->id,
+                    'product_id' => $cart->product->id,
                     'quantity' => $cart->quantity,
-                    'amount' => $product->selling_amount,
-                    'payment_method_id' => 1,
+                    'amount' => $cart->product->selling_amount,
+                    'gst' => $cart->product->subCategory->gst,
+                    'grand_amount' => $grand_total,
                     'customer_address_id' => $request->address,
+                    'customer_transaction_id' => $transaction->id,
                     'customer_id' => Auth::guard('customer')->user()->id,
                 ]);
+
+                // reduce the product quantity from merchant account
+                    //find product
+                    $product = product::find($cart->product->id);
+                    
+                    //update quantity for merchant
+                    $updateProduct = $product->update([
+                        'quantity' => $product->quantity - $cart->quantity,
+                    ]);
+
+
+                //delete the item from cart if order inserted succesfully
+                $cart->delete();
+
             }
-
-            
-
-            // remove the items from the cart
-
-            // reduce the product quantity from merchant account
-
-            // notification
-            dd('Valid');
         }
         else
         {
