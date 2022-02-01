@@ -18,7 +18,6 @@ class CreateCustomerCartsTable extends Migration
             $table->text('quantity');
             $table->unSignedBigInteger('customer_id');
             $table->unSignedBigInteger('product_id');
-            $table->softDeletes();
 
             $table->foreign('customer_id')
                 ->references('id')

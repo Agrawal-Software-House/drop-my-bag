@@ -17,13 +17,11 @@ class CreateCustomerOrdersTable extends Migration
             $table->id();
 
             $table->unSignedBigInteger('product_id');
-            $table->unSignedBigInteger('customer_address_id');
-            $table->unSignedBigInteger('customer_id');
+            
             $table->string('amount');
             $table->string('quantity');
             $table->string('gst');
             $table->string('grand_amount');
-            $table->string('order_id');
             $table->unSignedBigInteger('customer_transaction_id');
             $table->softDeletes();
 
@@ -32,14 +30,6 @@ class CreateCustomerOrdersTable extends Migration
             $table->foreign('product_id')
                     ->references('id')
                     ->on('products');
-
-            $table->foreign('customer_address_id')
-                    ->references('id')
-                    ->on('customer_addresses');
-
-            $table->foreign('customer_id')
-                    ->references('id')
-                    ->on('customers');
 
             $table->foreign('customer_transaction_id')
                     ->references('id')

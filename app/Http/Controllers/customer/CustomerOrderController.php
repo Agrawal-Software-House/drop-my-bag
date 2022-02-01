@@ -25,7 +25,12 @@ class CustomerOrderController extends Controller
     
     public function index()
     {
-        return view('customer.account.my-order');
+        $transactions = Auth::guard('customer')
+                            ->user()
+                            ->transactions;
+
+        return view('customer.account.my-order',compact('transactions'));
+        
     }
 
     /**
@@ -51,12 +56,15 @@ class CustomerOrderController extends Controller
             //fetch the items in the cart
             $carts = Auth::guard('customer')->user()->cart;
 
+            $order_no = str_random(15);
+
             //create a transaction
             $transaction = customer_transaction::create([
                 'payment_method_id' => 1,
+                'order_no' => $order_no,
+                'customer_address_id' => $request->address,
+                'customer_id' => Auth::guard('customer')->user()->id,
             ]);
-
-            $order_no = str_random(15);
 
             foreach ($carts as $cart) {
                 $total = $cart->product->selling_price * $cart->quantity;       
@@ -71,10 +79,7 @@ class CustomerOrderController extends Controller
                     'amount' => $cart->product->selling_price,
                     'gst' => $cart->product->subCategory->gst,
                     'grand_amount' => $grand_total,
-                    'customer_address_id' => $request->address,
                     'customer_transaction_id' => $transaction->id,
-                    'customer_id' => Auth::guard('customer')->user()->id,
-                    'order_id' => $order_no,
                 ]);
 
                 // reduce the product quantity from merchant account
@@ -89,16 +94,15 @@ class CustomerOrderController extends Controller
 
                 //delete the item from cart if order inserted succesfully
                 $cart->delete();
-
-                $message = 'Order Created Successfully !';
-
-                $data = array(
-                    'success' => true,
-                    'message' => $message,
-                );
-                echo json_encode($data);
-
             }
+
+            $message = 'Order Created Successfully !';
+
+            $data = array(
+                'success' => true,
+                'message' => $message,
+            );
+            echo json_encode($data);
         }
         else
         {

@@ -128,6 +128,7 @@
 					}
 					else{
 						successToast(data.message);
+						window.location = "{{route('customer.orders.index')}}";
 					}
 					
 				},

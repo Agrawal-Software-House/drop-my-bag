@@ -18,7 +18,6 @@ class CreateCustomerWishlistsTable extends Migration
             $table->unSignedBigInteger('customer_id');
             $table->unSignedBigInteger('product_id');
             $table->timestamps();
-            $table->softDeletes();
 
             $table->foreign('customer_id')
                 ->references('id')

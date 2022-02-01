@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\product;
 
 class customer_order extends Model
 {
@@ -17,9 +18,12 @@ class customer_order extends Model
         'amount',
         'gst',
         'grand_amount',
-        'customer_address_id',
         'customer_transaction_id',
-        'customer_id',
-        'order_id',
+        
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(product::class);
+    }
 }

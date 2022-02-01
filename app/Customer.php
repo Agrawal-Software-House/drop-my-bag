@@ -5,6 +5,7 @@ namespace App;
 use App\Models\customer_address;
 use App\Models\customer_wishlist;
 use App\Models\customer_cart;
+use App\Models\customer_transaction;
 use App\Notifications\CustomerResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -64,6 +65,11 @@ class Customer extends Authenticatable
     public function cart()
     {
         return $this->hasMany(customer_cart::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(customer_transaction::class);
     }
 
     
