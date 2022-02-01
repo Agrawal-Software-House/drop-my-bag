@@ -20,6 +20,6 @@ class customer_order extends Model
         'customer_address_id',
         'customer_transaction_id',
         'customer_id',
-        'order_no',
+        'order_id',
     ];
 }

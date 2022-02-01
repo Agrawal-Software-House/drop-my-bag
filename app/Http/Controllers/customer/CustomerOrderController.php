@@ -68,13 +68,13 @@ class CustomerOrderController extends Controller
                 $customer_order = customer_order::create([
                     'product_id' => $cart->product->id,
                     'quantity' => $cart->quantity,
-                    'amount' => $cart->product->selling_amount,
+                    'amount' => $cart->product->selling_price,
                     'gst' => $cart->product->subCategory->gst,
                     'grand_amount' => $grand_total,
                     'customer_address_id' => $request->address,
                     'customer_transaction_id' => $transaction->id,
                     'customer_id' => Auth::guard('customer')->user()->id,
-                    'order_no' => $order_no,
+                    'order_id' => $order_no,
                 ]);
 
                 // reduce the product quantity from merchant account
@@ -83,7 +83,7 @@ class CustomerOrderController extends Controller
                     
                     //update quantity for merchant
                     $updateProduct = $product->update([
-                        'quantity' => $product->quantity - $cart->quantity,
+                        'piece' => $product->piece - $cart->quantity,
                     ]);
 
 

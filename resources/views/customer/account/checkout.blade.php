@@ -121,7 +121,15 @@
 				dataType: 'json',
 				
 				success: function(data){
-					successToast(data.message);
+					if(data.captcha_verifed == false)
+					{
+						errorToast(data.message);
+						location.reload();
+					}
+					else{
+						successToast(data.message);
+					}
+					
 				},
 
 				complete: function(response){
