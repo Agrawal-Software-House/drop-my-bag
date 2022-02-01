@@ -4,6 +4,8 @@ namespace App\Http\Controllers\customer;
 
 use App\Http\Controllers\Controller;
 use App\Models\customer_order;
+use App\Models\customer_transaction;
+use App\Models\product;
 use App\Http\Requests\customer\order\storeOrder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,6 +56,8 @@ class CustomerOrderController extends Controller
                 'payment_method_id' => 1,
             ]);
 
+            $order_no = str_random(15);
+
             foreach ($carts as $cart) {
                 $total = $cart->product->selling_price * $cart->quantity;       
                 $tax = ($cart->product->subCategory->gst * ($cart->product->selling_price * $cart->quantity))/100;
@@ -70,6 +74,7 @@ class CustomerOrderController extends Controller
                     'customer_address_id' => $request->address,
                     'customer_transaction_id' => $transaction->id,
                     'customer_id' => Auth::guard('customer')->user()->id,
+                    'order_no' => $order_no,
                 ]);
 
                 // reduce the product quantity from merchant account
@@ -85,12 +90,25 @@ class CustomerOrderController extends Controller
                 //delete the item from cart if order inserted succesfully
                 $cart->delete();
 
+                $message = 'Order Created Successfully !';
+
+                $data = array(
+                    'success' => true,
+                    'message' => $message,
+                );
+                echo json_encode($data);
+
             }
         }
         else
         {
-            // Invalid
-            dd('InValid');
+            $message = 'Invalid Captcha';
+        
+            $data = array(
+                'captcha_verifed' => false,
+                'message' => $message,
+            );
+            echo json_encode($data);
         }
     }
 
