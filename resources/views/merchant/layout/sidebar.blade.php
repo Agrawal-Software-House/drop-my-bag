@@ -41,7 +41,12 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="{{Storage::url(Auth::guard('merchant')->user()->avtar)}}" class="img-circle elevation-2" alt="User Image">
+        @if (Auth::guard('merchant')->user()->avtar)
+          <img src="{{Storage::url(Auth::guard('merchant')->user()->avtar)}}" class="img-circle elevation-2" alt="User Image">
+        @else
+          <img src="{{ asset('img/default_avtar.jpg') }}" class="img-circle elevation-2" alt="User Image">
+        @endif
+        
       </div>
       <div class="info">
         <a href="#" class="d-block">{{Auth::guard('merchant')->user()->name}}</a>
@@ -112,27 +117,23 @@
             </p>
           </a>
         </li>
+        
 
-        <!-- <li class="nav-header">Manange Orders</li>
+        <li class="nav-header">Manange Orders</li>
+
         <li class="nav-item">
-          <a href="iframe.html" class="nav-link">
+          <a href="{{route('merchant.order.pending.index')}}" class="nav-link">
             <i class="nav-icon fas fa-ellipsis-h"></i>
             <p>Pending</p>
           </a>
         </li>
+
         <li class="nav-item">
-          <a href="https://adminlte.io/docs/3.1/" class="nav-link">
+          <a href="{{route('merchant.order.delivered.index')}}" class="nav-link">
             <i class="nav-icon fas fa-file"></i>
             <p>Delivered</p>
           </a>
         </li>
-        <li class="nav-item">
-          <a href="https://adminlte.io/docs/3.1/" class="nav-link">
-            <i class="nav-icon fas fa-file"></i>
-            <p>Returned</p>
-          </a>
-        </li> -->
-
 
 
         <li class="nav-header">Setting</li>

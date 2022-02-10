@@ -42,7 +42,12 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
+        @if (Auth::guard('admin')->user()->profile_image)
         <img src="{{Storage::url(Auth::guard('admin')->user()->profile_image)}}" class="img-circle elevation-2" alt="User Image">
+        @else
+        <img src="{{asset('img/default_avtar.jpg')}}" class="img-circle elevation-2" alt="User Image">
+        @endif
+        
       </div>
       <div class="info">
         <a href="#" class="d-block">{{Auth::guard('admin')->user()->name}}</a>
