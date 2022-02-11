@@ -49,8 +49,6 @@
 <style>
   body
   {
-    /* font-family: 'Poppins', sans-serif !important; */
-    /*font-family: 'Roboto', sans-serif !important;*/
     font-family: 'Roboto Slab', serif !important;
   }
 

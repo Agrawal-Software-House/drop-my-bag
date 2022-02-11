@@ -2,7 +2,7 @@
 
 namespace App\DataTables\merchant\order;
 
-use App\Models\customer_order;
+use App\Models\customer_transaction;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
@@ -21,7 +21,21 @@ class pendingOrderDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'merchant\order\customer_order.action');
+            ->editColumn('product_title',function(customer_order $model){
+                return $model->product->product_title;
+            })
+            // ->addColumn('action',function(customer_order $model){
+            //     return "<div class='btn-group'>
+            //         <a type='button' onclick='showApproveModal($model->id)' class='btn btn-default'>Approve</a>
+            //         <button type='button' class='btn btn-default dropdown-toggle dropdown-icon' data-toggle='dropdown'>
+            //           <span class='sr-only'>Toggle Dropdown</span>
+            //         </button>
+            //         <div class='dropdown-menu' role='menu'>
+            //           <a type='button' class='dropdown-item' onclick='showDeleteModal($model->id)'>Delete</a>
+            //         </div>
+            //       </div>";
+            // })
+            ->rawColumns(['product_title', 'action']);
     }
 
     /**
@@ -30,9 +44,9 @@ class pendingOrderDatatable extends DataTable
      * @param \App\Models\merchant\order\customer_order $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(customer_order $model)
+    public function query(customer_transaction $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->where('merchant_id', Auth::guard('merchant')->id());
     }
 
     /**
@@ -43,11 +57,10 @@ class pendingOrderDatatable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('merchant\order\pendingorderdatatable-table')
+                    ->setTableId('pendingorderdatatable-table')
                     ->columns($this->getColumns())
-                    ->postAjax()
-                    ->dom('Bfrtip')
-                    ->orderBy(1);
+                    ->parameters(['scrollX' => true])
+                    ->postAjax();
     }
 
     /**
@@ -58,23 +71,13 @@ class pendingOrderDatatable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            
-            Column::make('')->title('Order No'),
-            
-            Column::make('id')->title('Customer Name'),
-            Column::make('')->title('Product Name'),
-            Column::make('')->title('Payment Method'),
-            Column::make('')->title('Quantity'),
-            Column::make('')->title('GST'),
-            Column::make('')->title('Grand Amount'),
+            Column::make('product_title')->title('Product Title'),
+            Column::make('quantity')->title('Quantity'),
+            Column::make('gst')->title('GST'),
+            Column::make('grand_amount')->title('Grand Amount'),
 
-            Column::make('created_at')->title('Order At'),
-            Column::make('updated_at'),
+            // Column::make('created_at')->title('Order At'),
+            // Column::make('updated_at'),
         ];
     }
 
